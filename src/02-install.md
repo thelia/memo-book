@@ -46,6 +46,14 @@ correctly configured, I have to reach this address :
 
 http://thelia.net/install
 
+### Using cli tools
+
+```
+php Thelia thelia:install
+```
+
+and follow the instructions
+
 **After installing Thelia, remove the web/install directory**
 
 

@@ -63,7 +63,7 @@ The other directories are less important :
 
 * bin : propel and phpunit binaries are in this directory
 * cache : the cache for each environment so you find a dev, prod and even
-test directory if you run test. Each environment has is own cache so if you
+test directory if you run test. Each environment has its own cache so if you
 clear the cache for the dev environment, only the dev environment will be
 affect.
 * core : Thelia's source code and third party dependencies managed with

@@ -60,18 +60,56 @@ create new compilers, etc.
 </config>
 ```
 
-------------------------------------------------------------------------------------------------------------------------
-   Tag      Description
------------ ------------------------------------------------------------------------------------------------------------
-   loop     declare a loop. name and class properties are mandatories. The name is a unique key and class the full
-            namespace for the loop class.
-
-   form     declare a form. name and class properties are mandatories. The name is a unique key and class the full
-            namespace for the form class.
-
-   command  declare a command. name property is mandatory. The class is the full namespace for the command class.
-
-------------------------------------------------------------------------------------------------------------------------
-
-
++-----------+----------------------------------------------------------------------------------------------------------+
+|Tag        |Description                                                                                               |
++===========+==========================================================================================================+
+|   loop    | declare a loop. name and class properties are mandatories. The name is a unique key and class the full   |
+|           | namespace for the loop class.                                                                            |
++-----------+----------------------------------------------------------------------------------------------------------+
+|   form    | declare a form. name and class properties are mandatories. The name is a unique key and class the full   |
+|           | namespace for the form class.                                                                            |
++-----------+----------------------------------------------------------------------------------------------------------+
+|   command | declare a command. name property is mandatory. The class is the full namespace for the command class.    |
++-----------+----------------------------------------------------------------------------------------------------------+
+|   service | Services are the exact same notion as symfony services. See de dedicated chapter below                   |
++-----------+----------------------------------------------------------------------------------------------------------+
+|   hook    | Hooks are entry point in your template in which the modules will insert their own code. For configuring a|
+|           | hook, you must declare them in the config.xml file. Example :                                            |
+|           | ```xml                                                                                                   |
+|           | <hook id="mymodule.hook" class="MyModule\Hook\MySuperHook" scope="request">                              |
+|           |     <tag name="hook.event_listener" event="main.body.bottom" type="front" method="onMainBodyBottom" />   |
+|           | </hook>                                                                                                  |
+|           | ```                                                                                                      |
+|           |                                                                                                          |
+|           | On the hook node, id and class are mandatories. id is an unique identifier and class the full path to the|
+|           | class.                                                                                                   |
+|           |                                                                                                          |
+|           | On the tag node, name and event are mandatories, the other are not and are explain just below :          |
+|           |                                                                                                          |
+|           | * ```name="hook.event_listener"``` : this never change                                                   |
+|           | * event : represents the hook code for which it wants to respond.                                        |
+|           | * type : indicate the context of the hook : frontOffice (default), backOffice, pdf or email.             |
+|           | * method : indicate the method to be called. By default, it will be based on the name of the hook.       |
+|           |   eg : for product.additional hook, the method onProductAdditional will be called                        |
+|           |   (CamelCase prefixed by on).                                                                            |
+|           | * active : allow you to activate the hook (set to 1 - default) or not (set to 0) when the module         |
+|           |   is installed                                                                                           |
++-----------+----------------------------------------------------------------------------------------------------------+
+|   export  |                                                                                                          |
+|           | ```xml                                                                                                   |
+|           | <export id="your.export.id" class="Your\ExportHandler" category_id="the.category_id">                    |
+|           |   <descriptive locale="en_US">                                                                           |
+|           |       <title>Your export title </title>                                                                  |
+|           |       <!-- you may add an optionnal description -->                                                      |
+|           |       <description> ... </description>                                                                   |
+|           |   </descriptive>                                                                                         |
+|           |   <descriptive locale="fr_FR">                                                                           |
+|           |       <!-- Here's for another locale -->                                                                 |
+|           |   </descriptive>                                                                                         |
+|           | </export>                                                                                                |
+|           | ```                                                                                                      |
+|           |                                                                                                          |
+|           |                                                                                                          |
+|           |                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------+
 

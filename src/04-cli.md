@@ -31,3 +31,4 @@ List of available commands :
 | thelia:generate-resources |  Outputs admin resources | ```$ php Thelia thelia:generate-resources [--output[="..."]]``` |
 | thelia:install | Install Thelia | ```$ php Thelia thelia:install``` |
 | thelia:update | update Thelia database. Before that you have to update Thelia files | ```$ php Thelia thelia:update``` |
+

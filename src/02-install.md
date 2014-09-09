@@ -2,7 +2,7 @@
 
 ##Requirements
 
-Thelia needs at least php 5.4 and works on php 5.5 and 5.6 for now. For the
+Thelia needs at least php 5.4 and works with php 5.5 and 5.6 for now. For the
 database, Thelia requires at least mysql 5.5.
 
 ## PHP extensions
@@ -15,11 +15,11 @@ database, Thelia requires at least mysql 5.5.
 
 ## Download Thelia
 
-You can download Thelia by two different way
+You can download Thelia in two different ways
 
-### From Thelia website
+### From the Thelia website
 
-Go to thelia website (http://thelia.net) and download it.
+Go to the thelia website (http://thelia.net) and download it.
 
 ### Using Composer
 
@@ -28,12 +28,12 @@ $ curl -sS https://getcomposer.org/installer | php
 $ php composer.phar create-project thelia/thelia your-path 2.0.3
 ```
 
-## Install it
+## Install Thelia
 
 First of all, create a vhost dedicated to Thelia and put the documentRoot in
 the web directory.
 
-Here again you can install Thelia by two different way
+Here again you can install Thelia in two different ways
 
 ### Using install wizard
 
@@ -42,7 +42,7 @@ with your favorite browser, navigate to the install directory :
 http://yourdomain.tld/[/subdomain_if_needed]/install
 
 For example, I have thelia downloaded at http://thelia.net and my vhost is
-correctly configured, I have to reach this address :
+correctly configured, I have to go to this address :
 
 http://thelia.net/install
 

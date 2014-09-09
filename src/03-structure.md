@@ -1,6 +1,6 @@
 # Thelia's structure
 
-After installation you have an architecture like this
+After the installation you have an architecture like this
 
 ```
 www <- your web root directory
@@ -22,26 +22,26 @@ www <- your web root directory
 
 in this directory you can find four directories :
 
-* config : contains the database.yml file. In this file is store the
+* config : contains the database.yml file. In this file is stored the
 information for connecting to the database.
-* modules : all the modules develop by yourself or the community
-* media : all the media uploaded from the back-office. Here you can find all
-the product's picture for example
-* session : by default Thelia stores session in this directory. You can
-change the directory where the sessions are saved, for this insert
+* modules : contains the modules developed by yourself or the community
+* media : contains the media uploaded from the back-office. For example you can
+ find all the product pictures.
+* session : by default Thelia stores the sessions in this directory. You can
+change the directory where the sessions are saved. To do this insert
 a new record in the config table with ```session_config.save_path``` for the
 column name and in the value column put the full path where you want to store
  the sessions.
 
 ## Template directory
 
-The template directory contains all the template for all Thelia's environment
-: front-office, back-office, email and pdf. For each type of template a
-directory exists and contains how much template you want but only one can be
+The template directory contains all the templates for all Thelia's environment
+: front-office, back-office, email and pdf. For each type of templates a
+directory exists and contains as many template as you want but only one can be
 enabled (in the back-office panel -> Configuration -> System variables)
 
-A good practice is to duplicate the default template and then modify it for
-having a custom template. The default front-office template id highly
+A good practice is to duplicate the default template and then modify to have a
+custom template. The default front-office template is highly
 customizable, see some example at [https://github.com/thelia-templates](https://github.com/thelia-templates)
 
 ## Web directory
@@ -49,12 +49,13 @@ customizable, see some example at [https://github.com/thelia-templates](https://
 The web directory is the only one accessible by your web server. It contains
 by default two controllers :
 
-* index.php : used in production environement, it calculate only once the cache
-and never try to now if it is outdated or not so after each modification
+* index.php : used in production environement, it calculate the cache only once
+and never tries to know if it is outdated or not so after each modification
 **don't forget to clear the cache**
 * index_dev.php : used when you develop the store. This controller is more
-flexible, the cache is all the time refresh when needed. It also logs lot of
-informations, like each request, all assets creation, etc.
+flexible, the cache is checked all the time and refreshed if needed. It also
+logs a lot of information, like every request you make, all assets creation,
+etc.
 
 ## Other directories
 
@@ -65,8 +66,9 @@ The other directories are less important :
 test directory if you run test. Each environment has is own cache so if you
 clear the cache for the dev environment, only the dev environment will be
 affect.
-* core : Thelia's source code and third party depencies managed with composer.
-* setup : all the needed files for bootstraping thelia : sql database, fake
+* core : Thelia's source code and third party dependencies managed with
+composer.
+* setup : all the files needed for bootstraping thelia : sql database, fake
 catalog script, etc
-* logs : Thelia's logs. The configuration is the admin panel (configuration
+* logs : Thelia's logs. The configuration is in the admin panel (configuration
 -> System logs)

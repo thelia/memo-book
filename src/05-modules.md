@@ -253,3 +253,82 @@ Here an example :
     <tag name="router.register" priority="128"/>
 </service>
 ```
+
+## Model
+
+Your module will maybe need to create tables, generate model classes and interact with Thelia's model.
+
+1. Create the file schema.xml in your Config directory.
+2. Fill schema.xml file, you can find all the information you need in the propel documentation.
+3. Use the CLI tools for generating model and sql (```php Thelia module:generate:model MyModule --generate-sql```).
+
+Note : it's better to put the namespace property on each table attributes instead of the database attribute.
+
+## Main class
+
+The main class in your module is the most important file. This class is used when the module is activated or
+deactivated.
+
+Most of time this class will have the same name as you module directory. If my module directory is **Atos**, my
+main class will be **Atos** too and the full namespace will be **Atos\Atos**.
+
+Depending of the type of your module, this class must extends a specific abstract class. Here is a list of all
+abstract classes :
+
+* **Thelia\\Module\\AbstractDeliveryModule** : Use this class when you develop a delivery module
+* **Thelia\\Module\\AbstractPaymentModule** : Use this class when you develop a payment module
+* **Thelia\\Module\\BaseModule** : Use this class when you develop a class module
+
+**AbstractDeliveryModule** and **AbstractPaymentModule** classes extends BaseModule class.
+
+Some methods in **BaseModule** can be useful if you want to interact with Thelia during installation or removal process.
+You just have to overload the method you want and implement your code.
+
++-----------------+----------------------------------------------------------------------------------------------------+
+|Method           |Description                                                                                         |
++=================+====================================================================================================+
+|preActivation    | This method is called before the module activation, and may prevent it by returning false.         |
++-----------------+----------------------------------------------------------------------------------------------------+
+|postActivation   | This method is called just after the module was successfully activated. If an exception is thrown  |
+|                 | the procedure will be stopped and a rollback of the current transaction will be performed.         |
++-----------------+----------------------------------------------------------------------------------------------------+
+|preDeactivation  | This method is called before the module de-activation, and may prevent it by returning false.      |
++-----------------+----------------------------------------------------------------------------------------------------+
+|postDeactivation | This method is called just after the module was successfully deactivated. If an exception is thrown|
+|                 | the procedure will be stopped and a rollback of the current transaction will be performed.         |
++-----------------+----------------------------------------------------------------------------------------------------+
+|getCompilers     | This method adds new compilers to Thelia container                                                 |
++-----------------+----------------------------------------------------------------------------------------------------+
+|getHooks         | This method must be used when your module defines hooks.                                           |
++-----------------+----------------------------------------------------------------------------------------------------+
+
+Specific methods for **AbstractDeliveryModule**
+
++-----------------+----------------------------------------------------------------------------------------------------+
+|Method           |Description                                                                                         |
++=================+====================================================================================================+
+|isValidDelivery  | This method is called by the Delivery loop, to check if the current module has to be displayed     |
+|                 | to the customer. This method must be implemented in your module                                    |
++-----------------+----------------------------------------------------------------------------------------------------+
+|getPostage       | Calculate and return delivery price in the shop's default currency. This method must be implemented|
+|                 | in your module                                                                                     |
++-----------------+----------------------------------------------------------------------------------------------------+
+
+Specific methods for **AbstractPaymentModule**
+
++---------------------------+------------------------------------------------------------------------------------------+
+|Method                     |Description                                                                               |
++===========================+==========================================================================================+
+|pay                        | Method used by payment gateway. This method must be implemented in your module           |
++---------------------------+------------------------------------------------------------------------------------------+
+|isValidPayment             | This method is call on Payment loop, to check if the current module has to be displayed  |
+|                           | to the customer. This method must be implemented in your module                          |
++---------------------------+------------------------------------------------------------------------------------------+
+|generateGatewayFormResponse| Render the payment gateway template. The module should provide the gateway URL           |
+|                           | and  the form fields names and values. This method is a helper                            |
++---------------------------+------------------------------------------------------------------------------------------+
+|getPaymentSuccessPageUrl   | Return the order payment success page URL                                                |
++---------------------------+------------------------------------------------------------------------------------------+
+|getPaymentFailurePageUrl   | Redirect the customer to the failure payment page. if $message is null,                  |
+|                           | a generic message is displayed.                                                          |
++---------------------------+------------------------------------------------------------------------------------------+

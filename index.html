@@ -426,5 +426,114 @@ $ <span class="kw">php</span> Thelia</code></pre>
     <span class="kw">&lt;argument</span><span class="ot"> type=</span><span class="st">&quot;service&quot;</span><span class="ot"> id=</span><span class="st">&quot;request.context&quot;</span><span class="kw">/&gt;</span>
     <span class="kw">&lt;tag</span><span class="ot"> name=</span><span class="st">&quot;router.register&quot;</span><span class="ot"> priority=</span><span class="st">&quot;128&quot;</span><span class="kw">/&gt;</span>
 <span class="kw">&lt;/service&gt;</span></code></pre>
+<h2 id="model">Model</h2>
+<p>Your module will maybe need to create tables, generate model classes and interact with Thelia's model.</p>
+<ol style="list-style-type: decimal">
+<li>Create the file schema.xml in your Config directory.</li>
+<li>Fill schema.xml file, you can find all the information you need in the propel documentation.</li>
+<li>Use the CLI tools for generating model and sql (<code>php Thelia module:generate:model MyModule --generate-sql</code>).</li>
+</ol>
+<p>Note : it's better to put the namespace property on each table attributes instead of the database attribute.</p>
+<h2 id="main-class">Main class</h2>
+<p>The main class in your module is the most important file. This class is used when the module is activated or deactivated.</p>
+<p>Most of time this class will have the same name as you module directory. If my module directory is <code>Atos</code>, my main class will be <code>Atos</code> too and the full namespace will be <code>Atos\Atos</code>.</p>
+<p>Depending of the type of your module, this class must extends a specific abstract class. Here is a list of all abstract classes :</p>
+<ul>
+<li><strong>Thelia\Module\AbstractDeliveryModule</strong> : Use this class when you develop a delivery module</li>
+<li><strong>Thelia\Module\AbstractPaymentModule</strong> : Use this class when you develop a payment module</li>
+<li><strong>Thelia\Module\BaseModule</strong> : Use this class when you develop a class module</li>
+</ul>
+<p><strong>AbstractDeliveryModule</strong> and <strong>AbstractPaymentModule</strong> classes extends BaseModule class.</p>
+<p>Some methods in <strong>BaseModule</strong> can be useful if you want to interact with Thelia during installation or removal process. You just have to overload the method you want and implement your code.</p>
+<table>
+<col width="15%" />
+<col width="84%" />
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>preActivation</p></td>
+<td align="left"><p>This method is called before the module activation, and may prevent it by returning false.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>postActivation</p></td>
+<td align="left"><p>This method is called just after the module was successfully activated. If an exception is thrown the procedure will be stopped and a rollback of the current transaction will be performed.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>preDeactivation</p></td>
+<td align="left"><p>This method is called before the module de-activation, and may prevent it by returning false.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>postDeactivation</p></td>
+<td align="left"><p>This method is called just after the module was successfully deactivated. If an exception is thrown the procedure will be stopped and a rollback of the current transaction will be performed.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>getCompilers</p></td>
+<td align="left"><p>This method adds new compilers to Thelia container</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>getHooks</p></td>
+<td align="left"><p>This method must be used when your module defines hooks.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Specific methods for <strong>AbstractDeliveryModule</strong></p>
+<table>
+<col width="15%" />
+<col width="84%" />
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>isValidDelivery</p></td>
+<td align="left"><p>This method is called by the Delivery loop, to check if the current module has to be displayed to the customer. This method must be implemented in your module</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>getPostage</p></td>
+<td align="left"><p>Calculate and return delivery price in the shop's default currency. This method must be implemented in your module</p></td>
+</tr>
+</tbody>
+</table>
+<p>Specific methods for <strong>AbstractPaymentModule</strong></p>
+<table>
+<col width="23%" />
+<col width="76%" />
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>pay</p></td>
+<td align="left"><p>Method used by payment gateway. This method must be implemented in your module</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>isValidPayment</p></td>
+<td align="left"><p>This method is call on Payment loop, to check if the current module has to be displayed to the customer. This method must be implemented in your module</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>generateGatewayFormResponse</p></td>
+<td align="left"><p>Render the payment gateway template. The module should provide the gateway URL and the form fields names and values. This method is a helper</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>getPaymentSuccessPageUrl</p></td>
+<td align="left"><p>Return the order payment success page URL</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>getPaymentFailurePageUrl</p></td>
+<td align="left"><p>Redirect the customer to the failure payment page. if $message is null, a generic message is displayed.</p></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

@@ -165,3 +165,59 @@ creating new compilers, etc.
 |           |                                                                                                          |
 +-----------+----------------------------------------------------------------------------------------------------------+
 
+## Module.xml content
+
+Module.xml file is a description of your module. It contains who is the author and how to contact him, module version
+and with which version of Thelia it works.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+<fullnamespace>Atos\Atos</fullnamespace>
+    <descriptive locale="en_US">
+        <title>Atos-sips payment module</title>
+    </descriptive>
+    <descriptive locale="fr_FR">
+        <title>module de paiement Atos-sips</title>
+    </descriptive>
+    <version>0.9</version>
+    <author>
+        <name>Manuel Raynaud</name>
+        <email>manu@thelia.net</email>
+    </author>
+    <type>payment</type>
+    <thelia>2.0.0</thelia>
+    <stability>beta</stability>
+</module>
+```
+
++---------------+------------------------------------------------------------------------------------------------------+
+|Tag            |Description                                                                                           |
++===============+======================================================================================================+
+|fullnamespace  | The full namespace for the module's main class.                                                      |
++---------------+------------------------------------------------------------------------------------------------------+
+|descriptive    | This block can be repeat for how many locales you want. It contains a title, subtitle, description   |
+|               | and postscriptum. Only the title is mandatory.                                                       |
++---------------+------------------------------------------------------------------------------------------------------+
+|version        | Module version                                                                                       |
++---------------+------------------------------------------------------------------------------------------------------+
+|author         | Author information. It contains a name, a company, an email and a website tag. Only the name is      |
+|               | mandatory                                                                                            |
++---------------+------------------------------------------------------------------------------------------------------+
+|type           | What type of your module. Can be one of the value below :                                            |
+|               |                                                                                                      |
+|               | * payment : your module is a payment gateway.                                                        |
+|               | * delivery : your module is a delivery platform.                                                     |
+|               | * classic : all other types.                                                                         |
++---------------+------------------------------------------------------------------------------------------------------+
+|thelia         | Which version of Thelia your module is compatible for.                                               |
++---------------+------------------------------------------------------------------------------------------------------+
+|stability      | You module stability. Can be one of the value below :                                                |
+|               |                                                                                                      |
+|               | * alpha                                                                                              |
+|               | * beta                                                                                               |
+|               | * rc                                                                                                 |
+|               | * prod                                                                                               |
+|               | * other                                                                                              |
+|               |                                                                                                      |
++---------------+------------------------------------------------------------------------------------------------------+

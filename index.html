@@ -337,5 +337,77 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
+<h2 id="module.xml-content">Module.xml content</h2>
+<p>Module.xml file is a description of your module. It contains who is the author and how to contact him, module version and with which version of Thelia it works.</p>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;module&gt;</span>
+<span class="kw">&lt;fullnamespace&gt;</span>Atos\Atos<span class="kw">&lt;/fullnamespace&gt;</span>
+    <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;en_US&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;title&gt;</span>Atos-sips payment module<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;/descriptive&gt;</span>
+    <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;fr_FR&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;title&gt;</span>module de paiement Atos-sips<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;/descriptive&gt;</span>
+    <span class="kw">&lt;version&gt;</span>0.9<span class="kw">&lt;/version&gt;</span>
+    <span class="kw">&lt;author&gt;</span>
+        <span class="kw">&lt;name&gt;</span>Manuel Raynaud<span class="kw">&lt;/name&gt;</span>
+        <span class="kw">&lt;email&gt;</span>manu@thelia.net<span class="kw">&lt;/email&gt;</span>
+    <span class="kw">&lt;/author&gt;</span>
+    <span class="kw">&lt;type&gt;</span>payment<span class="kw">&lt;/type&gt;</span>
+    <span class="kw">&lt;thelia&gt;</span>2.0.0<span class="kw">&lt;/thelia&gt;</span>
+    <span class="kw">&lt;stability&gt;</span>beta<span class="kw">&lt;/stability&gt;</span>
+<span class="kw">&lt;/module&gt;</span></code></pre>
+<table>
+<col width="13%" />
+<col width="86%" />
+<thead>
+<tr class="header">
+<th align="left">Tag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>fullnamespace</p></td>
+<td align="left"><p>The full namespace for the module's main class.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>descriptive</p></td>
+<td align="left"><p>This block can be repeat for how many locales you want. It contains a title, subtitle, description and postscriptum. Only the title is mandatory.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>version</p></td>
+<td align="left"><p>Module version</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>author</p></td>
+<td align="left"><p>Author information. It contains a name, a company, an email and a website tag. Only the name is mandatory</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>type</p></td>
+<td align="left"><p>What type of your module. Can be one of the value below :</p>
+<ul>
+<li>payment : your module is a payment gateway.</li>
+<li>delivery : your module is a delivery platform.</li>
+<li>classic : all other types.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td align="left"><p>thelia</p></td>
+<td align="left"><p>Which version of Thelia your module is compatible for.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>stability</p></td>
+<td align="left"><p>You module stability. Can be one of the value below :</p>
+<ul>
+<li>alpha</li>
+<li>beta</li>
+<li>rc</li>
+<li>prod</li>
+<li>other</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

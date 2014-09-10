@@ -193,8 +193,53 @@ List of parameters
 |           | ```                                                                                                      |
 +-----------+----------------------------------------------------------------------------------------------------------+
 
+### {format_date}
 
+Use this function to format a date according to the current locale standards.
 
+example :
 
+```JavaScript
+{format_date date=$dateTimeObject}
+```
 
+List fo parameters
 
++-----------+----------------------------------------------------------------------------------------------------------+
+|Parameter  |Description                                                                                               |
++===========+==========================================================================================================+
+|date       | A DateTime object (required)                                                                             |
++-----------+----------------------------------------------------------------------------------------------------------+
+|format     | The expected format. The current locale format will be used if this parameter is empty or missing        |
++-----------+----------------------------------------------------------------------------------------------------------+
+|output     | The type of desired ouput, one of :                                                                      |
+|           |                                                                                                          |
+|           | * date : the date only                                                                                   |
+|           | * time : the time only                                                                                   |
+|           | * datetime : the date and the time (default)                                                             |
++-----------+----------------------------------------------------------------------------------------------------------+
+
+### {format_number}
+
+Use this function to format a number according to the current locale standards, or a specific format.
+
+Example :
+
+```JavaScript
+Outputs "1246,12" if locale is fr_FR, 1 246.12 if locale is en_US
+{format_number number="1246.12"}
+```
+
+List fo parameters
+
++---------------+------------------------------------------------------------------------------------------------------+
+|Parameter      |Description                                                                                           |
++===============+======================================================================================================+
+|number         | Int or float number. (Required)                                                                      |
++---------------+------------------------------------------------------------------------------------------------------+
+|decimals       | How many decimals format expected. If omitted, the current locale parameter is taken                 |
++---------------+------------------------------------------------------------------------------------------------------+
+|dec_point      | Separator for the decimal point. If omitted, the current locale parameter is taken                   |
++---------------+------------------------------------------------------------------------------------------------------+
+|thousands_sep  | Thousands separator. If omitted, the current locale parameter is taken                               |
++---------------+------------------------------------------------------------------------------------------------------+

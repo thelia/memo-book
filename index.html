@@ -715,5 +715,73 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
+<h3 id="format_date">{format_date}</h3>
+<p>Use this function to format a date according to the current locale standards.</p>
+<p>example :</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{format_date date=$dateTimeObject}</code></pre>
+<p>List fo parameters</p>
+<table>
+<col width="10%" />
+<col width="89%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>date</p></td>
+<td align="left"><p>A DateTime object (required)</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>format</p></td>
+<td align="left"><p>The expected format. The current locale format will be used if this parameter is empty or missing</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>output</p></td>
+<td align="left"><p>The type of desired ouput, one of :</p>
+<ul>
+<li>date : the date only</li>
+<li>time : the time only</li>
+<li>datetime : the date and the time (default)</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<h3 id="format_number">{format_number}</h3>
+<p>Use this function to format a number according to the current locale standards, or a specific format.</p>
+<p>Example :</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">Outputs <span class="st">&quot;1246,12&quot;</span> <span class="kw">if</span> locale is fr_FR, <span class="dv">1</span> <span class="fl">246.12</span> <span class="kw">if</span> locale is en_US
+{format_number number=<span class="st">&quot;1246.12&quot;</span>}</code></pre>
+<p>List fo parameters</p>
+<table>
+<col width="13%" />
+<col width="86%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>number</p></td>
+<td align="left"><p>Int or float number. (Required)</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>decimals</p></td>
+<td align="left"><p>How many decimals format expected. If omitted, the current locale parameter is taken</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>dec_point</p></td>
+<td align="left"><p>Separator for the decimal point. If omitted, the current locale parameter is taken</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>thousands_sep</p></td>
+<td align="left"><p>Thousands separator. If omitted, the current locale parameter is taken</p></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

@@ -21,7 +21,7 @@ creating new compilers, etc.
     ...
 ```
 
-## Config.xml content
+### Config.xml content
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -165,7 +165,7 @@ creating new compilers, etc.
 |           |                                                                                                          |
 +-----------+----------------------------------------------------------------------------------------------------------+
 
-## Module.xml content
+### Module.xml content
 
 Module.xml file is a description of your module. It contains who is the author and how to contact him, module version
 and with which version of Thelia it works.

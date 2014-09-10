@@ -535,5 +535,185 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
+<h1 id="templating">Templating</h1>
+<p>Thelia templates uses the Smarty template engine, enriched by many Thelia additions, such as loops, data access functions, internationalization function, etc</p>
+<h2 id="structure-1">Structure</h2>
+<p>See Thelia structure for more information.</p>
+<p>Every template should contains specific template files, which are the views invoked in the Front and Back Offices controllers. For a front-office template, these files are :</p>
+<ul>
+<li><strong>product.html</strong> : display a product.</li>
+<li><strong>content.html</strong> : display a contents.</li>
+<li><strong>category.html</strong> : displays a category contents.</li>
+<li><strong>feed.html</strong> : the RSS product or content feed.</li>
+<li><strong>folder.html</strong> : display a folder contents.</li>
+<li><strong>404.html</strong> : displayed if a page cannot be found.</li>
+<li><strong>order-delivery.html</strong> : display for choosing a delivery method.</li>
+<li><strong>order-failed.html</strong> : display when a payment failed.</li>
+<li><strong>order-invoice.html</strong> : display for choosing a payment gateway.</li>
+<li><strong>order-payment-gateway.html</strong> : fill by the payment gateway for sending a specific form to the platform.</li>
+<li><strong>order-placed.html</strong> : display for a success payment.</li>
+</ul>
+<h2 id="assets-management">Assets management</h2>
+<p>Template assets are managed in a sub-directory of the template directory. For example, the default front-office template contains an 'assets' directory to store all template's assets.</p>
+<p>To use this feature, you'll have to add some specific directives to your template files.</p>
+<h3 id="declare_assets">{declare_assets}</h3>
+<p>This directive tells the Thelia template system where your assets are located, e.g. the name of the root directory which contains all your assets.</p>
+<p>Example :</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{declare_assets directory=<span class="st">&quot;assets&quot;</span>}</code></pre>
+<h3 id="stylesheets">{stylesheets}</h3>
+<p>This directive processes your CSS style sheets.</p>
+<p>Example :</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{stylesheets file=<span class="st">&quot;assets/css/*.less&quot;</span> filters=<span class="st">&quot;less&quot;</span>}
+    &lt;link href=<span class="st">&quot;{$asset_url}&quot;</span> rel=<span class="st">&quot;stylesheet&quot;</span> type=<span class="st">&quot;text/css&quot;</span> <span class="ot">/&gt;</span>
+<span class="ot">{/stylesheets</span>}</code></pre>
+<p>This block return only one parameter, $asset_url, which is the asset URL in the web space, e.g. under the web/assets path.</p>
+<p>List of parameters</p>
+<table>
+<col width="23%" />
+<col width="76%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>file</p></td>
+<td align="left"><p>This is the path to the file (or files, as jokers like '*' are allowed), relative to the template base path.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>filters</p></td>
+<td align="left"><p>Apply a filter to the source(s) files. Available filters are :</p>
+<ul>
+<li>less : compile CSS using the LESS compiler</li>
+<li>sass : compile CSS using the SASS compiler</li>
+<li>compass : compile CSS using the Compass compiler</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>source</p></td>
+<td align="left"><p>When in the templates files of a module, use this parameter to specify that the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>template</p></td>
+<td align="left"><p>You may want to use an asset located in another template of the same type (for example, another front office template). To do so, specify the name of this template in the template parameter</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="images">{images}</h3>
+<p>This directive process your statics images used in your template.</p>
+<p>Example :</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{images file=<span class="st">&#39;assets/img/favicon.ico&#39;</span>}
+    &lt;link rel=<span class="st">&quot;shortcut icon&quot;</span> type=<span class="st">&quot;image/x-icon&quot;</span> href=<span class="st">&quot;{$asset_url}&quot;</span>&gt;
+{<span class="ot">/images}</span></code></pre>
+<p>This block return only one parameter, $asset_url, which is the asset URL in the web space, e.g. under the web/assets path.</p>
+<p>List of parameters</p>
+<table>
+<col width="23%" />
+<col width="76%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>file</p></td>
+<td align="left"><p>This is the path to the file (jokers like '*' are <strong>NOT</strong> allowed), relative to the template base path.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>source</p></td>
+<td align="left"><p>When in the templates files of a module, use this parameter to specify that the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>template</p></td>
+<td align="left"><p>You may want to use an asset located in another template of the same type (for example, another front office template). To do so, specify the name of this template in the template parameter</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="javascripts">{javascripts}</h3>
+<p>This directive process your javascript files</p>
+<p>Example :</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{javascripts file=<span class="st">&#39;assets/js/script.js&#39;</span>}
+    &lt;script type=<span class="st">&quot;text/javascript&quot;</span> src=<span class="st">&quot;{$asset_url}&quot;</span>&gt;&lt;<span class="ot">/script&gt;</span>
+<span class="ot">{/javascripts</span>}</code></pre>
+<p>List of parameters</p>
+<table>
+<col width="23%" />
+<col width="76%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>file</p></td>
+<td align="left"><p>This is the path to the file (or files, as jokers like '*' are allowed), relative to the template base path.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>source</p></td>
+<td align="left"><p>When in the templates files of a module, use this parameter to specify that the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>template</p></td>
+<td align="left"><p>You may want to use an asset located in another template of the same type (for example, another front office template). To do so, specify the name of this template in the template parameter</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="internationalization">Internationalization</h2>
+<p>If you want to create multilingual compatible templates, you have to pay a special attention to : - static text - date formatting - number formatting - money formatting</p>
+<p>Thelia provides several Smarty functions to help you.</p>
+<h3 id="intl">{intl}</h3>
+<p>The {intl} function translates a string into the current language.</p>
+<p>Example :</p>
+<pre><code>{intl l=&quot;This is a string to translate&quot;}</code></pre>
+<p>List of parameters</p>
+<table>
+<col width="10%" />
+<col width="89%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>l</p></td>
+<td align="left"><p>The l parameter contains the string that will be translated. This string should not contains any variable, such as {intl l=&quot;Hello, <span class="math">$name, how do you do ?&quot;}, internal variables should be used instead. Every %varname found in the string will be replaced by the value of the varname parameter. For example: {intl l=&quot;Hello, %user, how do you do ?&quot; user=$</span>name} is fine.</p>
+<p>If no translation can be found for a given string, the translator will return either the value of the l parameter, or an empty string, depending on the &quot;Languages &amp; URLs&quot; parameters.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>d</p></td>
+<td align="left"><p>The d parameter is the message domain, a set of internationalized messages. Thelia contains the following domains :</p>
+<ul>
+<li>core : for Thelia core translations</li>
+<li>bo.<em>template_name</em> (eg : bo.default) : for each back-office template</li>
+<li>fo.<em>template_name</em> (eg : fo.default) : for each front-office template</li>
+<li>pdf.<em>template_name</em> (eg : pdf.default) : for each PDF template</li>
+<li>email.<em>template_name</em> (eg : email.default) : for each email template</li>
+<li>in modules :
+<ul>
+<li><em>module_code</em> (eg : paypal) : for module core translations</li>
+<li><em>module_code</em>.ai (eg : paypal.ai) : used in AdminIncludes templates</li>
+<li><em>module_code</em>.bo.<em>template_name</em> (eg : paypal.bo.default) : used in back office template</li>
+<li><em>module_code</em>.fo.<em>template_name</em> (eg : paypal.fo.default) : used in front office template</li>
+</ul></li>
+</ul>
+<p>This parameter is mostly used in modules. Other templates (front-office, back-office, PDF and email) may use the {default_translation_domain} function to define a template-wide message domain, and the d parameter could then be omitted.</p>
+<p>For examples, in the layout.tpl file of the default front-office template, you'll find {default_translation_domain domain='fo.default'}.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>js</p></td>
+<td align="left"><p>When using {intl} in a Javascript string, the translated string may contain simple and/or double quotes, that should be escaped to prevent a syntax error.</p>
+<p>To do so, use the js parameter, that will escape single and double quotes.</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript"> <span class="kw">var</span> myString = <span class="st">&#39;{intl l=&quot;A string with &#39;</span>simple<span class="st">&#39; and </span><span class="ch">\&quot;</span><span class="st">double</span><span class="ch">\&quot;</span><span class="st"> quotes&quot; js=1}&#39;</span>;</code></pre></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

@@ -332,3 +332,4 @@ Specific methods for **AbstractPaymentModule**
 |getPaymentFailurePageUrl   | Redirect the customer to the failure payment page. if $message is null,                  |
 |                           | a generic message is displayed.                                                          |
 +---------------------------+------------------------------------------------------------------------------------------+
+

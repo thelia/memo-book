@@ -173,7 +173,7 @@ and with which version of Thelia it works.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-<fullnamespace>Atos\Atos</fullnamespace>
+    <fullnamespace>Atos\Atos</fullnamespace>
     <descriptive locale="en_US">
         <title>Atos-sips payment module</title>
     </descriptive>

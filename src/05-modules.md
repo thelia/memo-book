@@ -3,7 +3,7 @@
 Modules are the best way to extend Thelia functionalities. Payment and delivery methods are all modules.
 
 A module has the exact same structure as Thelia's core and can interact with the container for adding its own services,
-create new compilers, etc.
+creating new compilers, etc.
 
 ## Structure
 

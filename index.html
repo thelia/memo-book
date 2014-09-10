@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Manuel Raynaud" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<h1 id="introduction">Introduction</h1>
+<p>Thelia is an open source tool for creating e-business websites and managing online content. Created in 2005, The new version of Thelia aims to be the next generation E-commerce system. It is based on Symfony 2 components and meets the following objectives : performance and scalability. #Installation</p>
+<h2 id="requirements">Requirements</h2>
+<p>Thelia needs at least php 5.4 and works with php 5.5 and 5.6 for now. For the database, Thelia requires at least mysql 5.5.</p>
+<h2 id="php-extensions">PHP extensions</h2>
+<ul>
+<li>intl</li>
+<li>mcrypt</li>
+<li>mysql and pdo_mysql</li>
+<li>curl</li>
+<li>gd</li>
+</ul>
+<h2 id="download-thelia">Download Thelia</h2>
+<p>You can download Thelia in two different ways</p>
+<h3 id="from-the-thelia-website">From the Thelia website</h3>
+<p>Go to the thelia website (http://thelia.net) and download it.</p>
+<h3 id="using-composer">Using Composer</h3>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -sS https://getcomposer.org/installer <span class="kw">|</span> <span class="kw">php</span>
+$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.0.3</code></pre>
+<h2 id="install-thelia">Install Thelia</h2>
+<p>First of all, create a vhost dedicated to Thelia and put the documentRoot in the web directory.</p>
+<p>Here again you can install Thelia in two different ways</p>
+<h3 id="using-install-wizard">Using install wizard</h3>
+<p>with your favorite browser, navigate to the install directory :</p>
+<p>http://yourdomain.tld/[/subdomain_if_needed]/install</p>
+<p>For example, I have thelia downloaded at http://thelia.net and my vhost is correctly configured, I have to go to this address :</p>
+<p>http://thelia.net/install</p>
+<h3 id="using-cli-tools">Using cli tools</h3>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">php</span> Thelia thelia:install</code></pre>
+<p>and follow the instructions</p>
+<p><strong>After installing Thelia, remove the web/install directory</strong></p>
+<h1 id="thelias-structure">Thelia's structure</h1>
+<p>After the installation you have an architecture like this</p>
+<pre><code>www &lt;- your web root directory
+    thelia &lt;- your thelia directory
+        bin
+        cache
+        core
+        setup
+        local
+            config
+            modules
+            session
+        log
+        templates
+        web &lt;- the only directory accessible by your web server</code></pre>
+<h2 id="local-directory">Local directory</h2>
+<p>in this directory you can find four directories :</p>
+<ul>
+<li>config : contains the database.yml file. In this file is stored the information for connecting to the database.</li>
+<li>modules : contains the modules developed by yourself or the community</li>
+<li>media : contains the media uploaded from the back-office. For example you can find all the product pictures.</li>
+<li>session : by default Thelia stores the sessions in this directory. You can change the directory where the sessions are saved. To do this insert a new record in the config table with <code>session_config.save_path</code> for the column name and in the value column put the full path where you want to store the sessions.</li>
+</ul>
+<h2 id="template-directory">Template directory</h2>
+<p>The template directory contains all the templates for all Thelia's environment : front-office, back-office, email and pdf. For each type of templates a directory exists and contains as many template as you want but only one can be enabled (in the back-office panel -&gt; Configuration -&gt; System variables)</p>
+<p>A good practice is to duplicate the default template and then modify to have a custom template. The default front-office template is highly customizable, see some example at <a href="https://github.com/thelia-templates">https://github.com/thelia-templates</a></p>
+<h2 id="web-directory">Web directory</h2>
+<p>The web directory is the only one accessible by your web server. It contains by default two controllers :</p>
+<ul>
+<li>index.php : used in production environement, it calculate the cache only once and never tries to know if it is outdated or not so after each modification <strong>don't forget to clear the cache</strong></li>
+<li>index_dev.php : used when you develop the store. This controller is more flexible, the cache is checked all the time and refreshed if needed. It also logs a lot of information, like every request you make, all assets creation, etc.</li>
+</ul>
+<h2 id="other-directories">Other directories</h2>
+<p>The other directories are less important :</p>
+<ul>
+<li>bin : propel and phpunit binaries are in this directory</li>
+<li>cache : the cache for each environment so you find a dev, prod and even test directory if you run test. Each environment has its own cache so if you clear the cache for the dev environment, only the dev environment will be affect.</li>
+<li>core : Thelia's source code and third party dependencies managed with composer.</li>
+<li>setup : all the files needed for bootstraping thelia : sql database, fake catalog script, etc</li>
+<li>logs : Thelia's logs. The configuration is in the admin panel (configuration -&gt; System logs)</li>
+</ul>
+<h1 id="cli-tools">CLI Tools</h1>
+<p>Thelia has a command line tools that can help you to automate repetitive task . Obviously you can develop your own command.</p>
+<h2 id="usage">Usage</h2>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> to/thelia/repository
+$ <span class="kw">php</span> Thelia</code></pre>
+<p>If you use the command line without any argument, it will display all command and options available.</p>
+<p>List of available commands :</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>command</strong></th>
+<th align="left"><strong>description</strong></th>
+<th align="left"><strong>example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">admin:create</td>
+<td align="left">Create a new administrator user</td>
+<td align="left"><code>$ php Thelia admin:create</code></td>
+</tr>
+<tr class="even">
+<td align="left">admin:updatePassword</td>
+<td align="left">change administrator password</td>
+<td align="left"><code>$ php Thelia admin:updatePassword adminlogin [--pasword=&quot;...&quot;]</code></td>
+</tr>
+<tr class="odd">
+<td align="left">cache:clear</td>
+<td align="left">invalidate cache</td>
+<td align="left"><code>$ php Thelia cache:clear [--env=&quot;...&quot;] [--without-assets] [--with-images]</code></td>
+</tr>
+<tr class="even">
+<td align="left">image-cache:clear</td>
+<td align="left">Empty part or whole web space image cache</td>
+<td align="left"><code>$ php Thelia  image-cache:clear [subdir]</code></td>
+</tr>
+<tr class="odd">
+<td align="left">module:activate</td>
+<td align="left">Activate a module</td>
+<td align="left"><code>$ php Thelia module:activate module-name</code></td>
+</tr>
+<tr class="even">
+<td align="left">module:deactivate</td>
+<td align="left">deactivate a module</td>
+<td align="left"><code>$ php Thelia module:deactivate module-name</code></td>
+</tr>
+<tr class="odd">
+<td align="left">module:generate</td>
+<td align="left">generate all needed files for creating a new Module</td>
+<td align="left"><code>$ php Thelia module:generate module-name</code></td>
+</tr>
+<tr class="even">
+<td align="left">module:generate:model</td>
+<td align="left">generate model for a specific module</td>
+<td align="left"><code>$ php Thelia module:generate:module module-name [--generate-sql]</code></td>
+</tr>
+<tr class="odd">
+<td align="left">module:generate:sql</td>
+<td align="left">Generate the sql from schema.xml file for a specific module</td>
+<td align="left"><code>$ php Thelia module:generate:sql module-name</code></td>
+</tr>
+<tr class="even">
+<td align="left">module:refresh</td>
+<td align="left">refresh module list</td>
+<td align="left"><code>$ php Thelia module:refresh</code></td>
+</tr>
+<tr class="odd">
+<td align="left">thelia:dev:reloadDB</td>
+<td align="left">erase current database and create new one. <strong>all your data will be lost</strong></td>
+<td align="left"><code>$ php Thelia thelia:dev:reloadDB</code></td>
+</tr>
+<tr class="even">
+<td align="left">thelia:generate-resources</td>
+<td align="left">Outputs admin resources</td>
+<td align="left"><code>$ php Thelia thelia:generate-resources [--output[=&quot;...&quot;]]</code></td>
+</tr>
+<tr class="odd">
+<td align="left">thelia:install</td>
+<td align="left">Install Thelia</td>
+<td align="left"><code>$ php Thelia thelia:install</code></td>
+</tr>
+<tr class="even">
+<td align="left">thelia:update</td>
+<td align="left">update Thelia database. Before that you have to update Thelia files</td>
+<td align="left"><code>$ php Thelia thelia:update</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="modules">Modules</h1>
+<p>Modules are the best way to extend Thelia functionalities. Payment and delivery methods are all modules.</p>
+<p>A module has the exact same structure as Thelia's core and can interact with the container for adding its own services, create new compilers, etc.</p>
+<h2 id="structure">Structure</h2>
+<pre><code>\MyModule
+    \Config
+        config.xml   &lt;- mandatory
+        module.xml   &lt;- mandatory
+        routing.xml
+        schema.xml
+    MyModule.php &lt;- mandatory
+    \Loop
+        Product.php
+        MyLoop.php
+    ...</code></pre>
+<h2 id="config.xml-content">Config.xml content</h2>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; <span class="kw">?&gt;</span>
+
+<span class="kw">&lt;config</span><span class="ot"> xmlns=</span><span class="st">&quot;http://thelia.net/schema/dic/config&quot;</span>
+<span class="ot">        xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="ot">        xsi:schemaLocation=</span><span class="st">&quot;http://thelia.net/schema/dic/config http://thelia.net/schema/dic/config/thelia-1.0.xsd&quot;</span><span class="kw">&gt;</span>
+
+        <span class="kw">&lt;loops&gt;</span>
+            <span class="kw">&lt;loop</span><span class="ot"> name=</span><span class="st">&quot;MySuperLoop&quot;</span><span class="ot"> class=</span><span class="st">&quot;MyModule\Loop\MySuperLoop&quot;</span> <span class="kw">/&gt;</span>
+        <span class="kw">&lt;/loops&gt;</span>
+
+        <span class="kw">&lt;forms&gt;</span>
+            <span class="kw">&lt;form</span><span class="ot"> name=</span><span class="st">&quot;MyFormName&quot;</span><span class="ot"> class=</span><span class="st">&quot;MyModule\Form\MySuperForm&quot;</span> <span class="kw">/&gt;</span>
+        <span class="kw">&lt;/forms&gt;</span>
+
+        <span class="kw">&lt;commands&gt;</span>
+            <span class="kw">&lt;command</span><span class="ot"> class=</span><span class="st">&quot;MyModule\Command\MySuperCommand&quot;</span> <span class="kw">/&gt;</span>
+        <span class="kw">&lt;/commands&gt;</span>
+
+        <span class="kw">&lt;services&gt;</span>
+            <span class="kw">&lt;service</span><span class="ot"> id=</span><span class="st">&quot;Mymodule.service.id&quot;</span><span class="ot"> class=</span><span class="st">&quot;MyModule\MySuperService&quot;</span><span class="kw">/&gt;</span>
+        <span class="kw">&lt;/services&gt;</span>
+        --&gt;
+
+        <span class="kw">&lt;hooks&gt;</span>
+            <span class="kw">&lt;hook</span><span class="ot"> id=</span><span class="st">&quot;mymodule.hook&quot;</span><span class="ot"> class=</span><span class="st">&quot;MyModule\Hook\MySuperHook&quot;</span><span class="ot"> scope=</span><span class="st">&quot;request&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;tag</span><span class="ot"> name=</span><span class="st">&quot;hook.event_listener&quot;</span><span class="ot"> event=</span><span class="st">&quot;main.body.bottom&quot;</span><span class="ot"> type=</span><span class="st">&quot;front|back|pdf|email&quot;</span><span class="ot"> method=</span><span class="st">&quot;onMainBodyBottom&quot;</span> <span class="kw">/&gt;</span>
+            <span class="kw">&lt;/hook&gt;</span>
+        <span class="kw">&lt;/hooks&gt;</span>
+
+        <span class="kw">&lt;exports&gt;</span> <span class="kw">&lt;/exports&gt;</span>
+
+        <span class="kw">&lt;imports&gt;</span> <span class="kw">&lt;/imports&gt;</span>
+
+<span class="kw">&lt;/config&gt;</span></code></pre>
+<table>
+<col width="10%" />
+<col width="89%" />
+<thead>
+<tr class="header">
+<th align="left">Tag</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>loop</p></td>
+<td align="left"><p>declare a loop. name and class properties are mandatories. The name is a unique key and class the full namespace for the loop class.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>form</p></td>
+<td align="left"><p>declare a form. name and class properties are mandatories. The name is a unique key and class the full namespace for the form class.</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>command</p></td>
+<td align="left"><p>declare a command. name property is mandatory. The class is the full namespace for the command class.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>service</p></td>
+<td align="left"><p>Services are the exact same notion as symfony services. See de dedicated chapter below</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>hook</p></td>
+<td align="left"><p>Hooks are entry point in your template in which the modules will insert their own code. For configuring a hook, you must declare them in the config.xml file. Example :</p>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;hook</span><span class="ot"> id=</span><span class="st">&quot;mymodule.hook&quot;</span><span class="ot"> class=</span><span class="st">&quot;MyModule\Hook\MySuperHook&quot;</span><span class="ot"> scope=</span><span class="st">&quot;request&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;tag</span><span class="ot"> name=</span><span class="st">&quot;hook.event_listener&quot;</span><span class="ot"> event=</span><span class="st">&quot;main.body.bottom&quot;</span><span class="ot"> type=</span><span class="st">&quot;front&quot;</span><span class="ot"> method=</span><span class="st">&quot;onMainBodyBottom&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;/hook&gt;</span></code></pre>
+<p>On the hook node, id and class are mandatories. id is an unique identifier and class the full path to the class.</p>
+<p>On the tag node, name and event are mandatories, the other are not and are explain just below :</p>
+<ul>
+<li><code>name=&quot;hook.event_listener&quot;</code> : this never change</li>
+<li>event : represents the hook code for which it wants to respond.</li>
+<li>type : indicate the context of the hook : frontOffice (default), backOffice, pdf or email.</li>
+<li>method : indicate the method to be called. By default, it will be based on the name of the hook. eg : for product.additional hook, the method onProductAdditional will be called (CamelCase prefixed by on).</li>
+<li>active : allow you to activate the hook (set to 1 - default) or not (set to 0) when the module is installed</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td align="left"><p>export</p></td>
+<td align="left"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;export</span><span class="ot"> id=</span><span class="st">&quot;your.export.id&quot;</span><span class="ot"> class=</span><span class="st">&quot;Your\ExportHandler&quot;</span><span class="ot"> category_id=</span><span class="st">&quot;the.category_id&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;en_US&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;title&gt;</span>Your export title <span class="kw">&lt;/title&gt;</span>
+      <span class="co">&lt;!-- you may add an optionnal description --&gt;</span>
+      <span class="kw">&lt;description&gt;</span> ... <span class="kw">&lt;/description&gt;</span>
+  <span class="kw">&lt;/descriptive&gt;</span>
+  <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;fr_FR&quot;</span><span class="kw">&gt;</span>
+      <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
+  <span class="kw">&lt;/descriptive&gt;</span>
+<span class="kw">&lt;/export&gt;</span></code></pre></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

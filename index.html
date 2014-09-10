@@ -204,7 +204,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
         Product.php
         MyLoop.php
     ...</code></pre>
-<h2 id="config.xml-content">Config.xml content</h2>
+<h3 id="config.xml-content">Config.xml content</h3>
 <pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; <span class="kw">?&gt;</span>
 
 <span class="kw">&lt;config</span><span class="ot"> xmlns=</span><span class="st">&quot;http://thelia.net/schema/dic/config&quot;</span>
@@ -337,11 +337,11 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
-<h2 id="module.xml-content">Module.xml content</h2>
+<h3 id="module.xml-content">Module.xml content</h3>
 <p>Module.xml file is a description of your module. It contains who is the author and how to contact him, module version and with which version of Thelia it works.</p>
 <pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
 <span class="kw">&lt;module&gt;</span>
-<span class="kw">&lt;fullnamespace&gt;</span>Atos\Atos<span class="kw">&lt;/fullnamespace&gt;</span>
+    <span class="kw">&lt;fullnamespace&gt;</span>Atos\Atos<span class="kw">&lt;/fullnamespace&gt;</span>
     <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;en_US&quot;</span><span class="kw">&gt;</span>
         <span class="kw">&lt;title&gt;</span>Atos-sips payment module<span class="kw">&lt;/title&gt;</span>
     <span class="kw">&lt;/descriptive&gt;</span>
@@ -409,5 +409,22 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
+<h2 id="routing">Routing</h2>
+<p>Thelia uses the symfony-cmf routing component, so it's possible to declare how many routers needed and add them in this routing component. If you need a router you can do it in two different ways</p>
+<h3 id="the-default-behavior">The default behavior</h3>
+<p>All you have to do is to create a file named routing.xml in your Config directory. Thelia will configure a new router and set a default priority (150) to it.</p>
+<h3 id="custom-routing">Custom routing</h3>
+<p>If you need a custom configuration for your routing, you can declare a new service and tag this service and put <code>router.register</code> for the name property and the priority you want.</p>
+<p>Here an example :</p>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;service</span><span class="ot"> id=</span><span class="st">&quot;router.front&quot;</span><span class="ot"> class=</span><span class="st">&quot;%router.class%&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;argument</span><span class="ot"> type=</span><span class="st">&quot;service&quot;</span><span class="ot"> id=</span><span class="st">&quot;router.module.xmlLoader&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;argument&gt;</span>Front/Config/front.xml<span class="kw">&lt;/argument&gt;</span>
+    <span class="kw">&lt;argument</span><span class="ot"> type=</span><span class="st">&quot;collection&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;argument</span><span class="ot"> key=</span><span class="st">&quot;cache_dir&quot;</span><span class="kw">&gt;</span>%kernel.cache_dir%<span class="kw">&lt;/argument&gt;</span>
+        <span class="kw">&lt;argument</span><span class="ot"> key=</span><span class="st">&quot;debug&quot;</span><span class="kw">&gt;</span>%kernel.debug%<span class="kw">&lt;/argument&gt;</span>
+    <span class="kw">&lt;/argument&gt;</span>
+    <span class="kw">&lt;argument</span><span class="ot"> type=</span><span class="st">&quot;service&quot;</span><span class="ot"> id=</span><span class="st">&quot;request.context&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;tag</span><span class="ot"> name=</span><span class="st">&quot;router.register&quot;</span><span class="ot"> priority=</span><span class="st">&quot;128&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/service&gt;</span></code></pre>
 </body>
 </html>

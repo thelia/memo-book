@@ -221,3 +221,35 @@ and with which version of Thelia it works.
 |               | * other                                                                                              |
 |               |                                                                                                      |
 +---------------+------------------------------------------------------------------------------------------------------+
+
+
+## Routing
+
+Thelia uses the symfony-cmf routing component, so it's possible to declare how many routers needed and add them in this
+routing component.
+If you need a router you can do it in two different ways
+
+### The default behavior
+
+All you have to do is to create a file named routing.xml in your Config directory. Thelia will configure a new router
+and set a default priority (150) to it.
+
+### Custom routing
+
+If you need a custom configuration for your routing, you can declare a new service and tag this service and put
+```router.register``` for the name property and the priority you want.
+
+Here an example :
+
+```xml
+<service id="router.front" class="%router.class%">
+    <argument type="service" id="router.module.xmlLoader"/>
+    <argument>Front/Config/front.xml</argument>
+    <argument type="collection">
+        <argument key="cache_dir">%kernel.cache_dir%</argument>
+        <argument key="debug">%kernel.debug%</argument>
+    </argument>
+    <argument type="service" id="request.context"/>
+    <tag name="router.register" priority="128"/>
+</service>
+```

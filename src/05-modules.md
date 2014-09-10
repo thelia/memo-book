@@ -270,7 +270,7 @@ The main class in your module is the most important file. This class is used whe
 deactivated.
 
 Most of time this class will have the same name as you module directory. If my module directory is **Atos**, my
-main class will be **Atos** too and the full namespace will be **Atos\Atos**.
+main class will be **Atos** too and the full namespace will be **Atos\\Atos**.
 
 Depending of the type of your module, this class must extends a specific abstract class. Here is a list of all
 abstract classes :

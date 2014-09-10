@@ -26,6 +26,7 @@ code > span.al { color: #ff0000; font-weight: bold; }
 code > span.fu { color: #06287e; }
 code > span.er { color: #ff0000; font-weight: bold; }
   </style>
+  <link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
 <body>
 <h1 id="introduction">Introduction</h1>
@@ -101,7 +102,7 @@ $ <span class="kw">php</span> composer.phar create-project thelia/thelia your-pa
 <li>logs : Thelia's logs. The configuration is in the admin panel (configuration -&gt; System logs)</li>
 </ul>
 <h1 id="cli-tools">CLI Tools</h1>
-<p>Thelia has a command line tools that can help you to automate repetitive task . Obviously you can develop your own command.</p>
+<p>Thelia has a command line tools that can help you automate repetitive task . Obviously you can develop your own command.</p>
 <h2 id="usage">Usage</h2>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> to/thelia/repository
 $ <span class="kw">php</span> Thelia</code></pre>
@@ -123,12 +124,12 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left">admin:updatePassword</td>
-<td align="left">change administrator password</td>
+<td align="left">Change administrator password</td>
 <td align="left"><code>$ php Thelia admin:updatePassword adminlogin [--pasword=&quot;...&quot;]</code></td>
 </tr>
 <tr class="odd">
 <td align="left">cache:clear</td>
-<td align="left">invalidate cache</td>
+<td align="left">Invalidate cache</td>
 <td align="left"><code>$ php Thelia cache:clear [--env=&quot;...&quot;] [--without-assets] [--with-images]</code></td>
 </tr>
 <tr class="even">
@@ -143,17 +144,17 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left">module:deactivate</td>
-<td align="left">deactivate a module</td>
+<td align="left">Deactivate a module</td>
 <td align="left"><code>$ php Thelia module:deactivate module-name</code></td>
 </tr>
 <tr class="odd">
 <td align="left">module:generate</td>
-<td align="left">generate all needed files for creating a new Module</td>
+<td align="left">Generate all needed files for creating a new Module</td>
 <td align="left"><code>$ php Thelia module:generate module-name</code></td>
 </tr>
 <tr class="even">
 <td align="left">module:generate:model</td>
-<td align="left">generate model for a specific module</td>
+<td align="left">Generate model for a specific module</td>
 <td align="left"><code>$ php Thelia module:generate:module module-name [--generate-sql]</code></td>
 </tr>
 <tr class="odd">
@@ -163,12 +164,12 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left">module:refresh</td>
-<td align="left">refresh module list</td>
+<td align="left">Refresh module list</td>
 <td align="left"><code>$ php Thelia module:refresh</code></td>
 </tr>
 <tr class="odd">
 <td align="left">thelia:dev:reloadDB</td>
-<td align="left">erase current database and create new one. <strong>all your data will be lost</strong></td>
+<td align="left">Erase current database and create new one. <strong>all your data will be lost</strong></td>
 <td align="left"><code>$ php Thelia thelia:dev:reloadDB</code></td>
 </tr>
 <tr class="even">
@@ -183,14 +184,14 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left">thelia:update</td>
-<td align="left">update Thelia database. Before that you have to update Thelia files</td>
+<td align="left">Update Thelia database. Before doing that you have to update Thelia files</td>
 <td align="left"><code>$ php Thelia thelia:update</code></td>
 </tr>
 </tbody>
 </table>
 <h1 id="modules">Modules</h1>
 <p>Modules are the best way to extend Thelia functionalities. Payment and delivery methods are all modules.</p>
-<p>A module has the exact same structure as Thelia's core and can interact with the container for adding its own services, create new compilers, etc.</p>
+<p>A module has the exact same structure as Thelia's core and can interact with the container for adding its own services, creating new compilers, etc.</p>
 <h2 id="structure">Structure</h2>
 <pre><code>\MyModule
     \Config
@@ -291,7 +292,48 @@ $ <span class="kw">php</span> Thelia</code></pre>
   <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;fr_FR&quot;</span><span class="kw">&gt;</span>
       <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
   <span class="kw">&lt;/descriptive&gt;</span>
-<span class="kw">&lt;/export&gt;</span></code></pre></td>
+<span class="kw">&lt;/export&gt;</span></code></pre>
+<p>On the export node, id, class and category_id properties are mandatories. id is an unique identifier and class the full path to the class.</p>
+<p>category_id possible values are :</p>
+<ul>
+<li>thelia.export.customer : Exports concerning customers</li>
+<li>thelia.export.products : Exports concerning products</li>
+<li>thelia.export.content : Exports concerning contents</li>
+<li>thelia.export.order : Exports concerning orders</li>
+<li>thelia.export.modules : module related exports</li>
+</ul>
+<p>You can also create a custom category if you want. For this you have to put something like below :</p>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;export_categories&gt;</span>
+    <span class="kw">&lt;export_category</span><span class="ot"> id=</span><span class="st">&quot;your.category.id&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;title</span><span class="ot"> locale=</span><span class="st">&quot;en_US&quot;</span><span class="kw">&gt;</span>A title<span class="kw">&lt;/title&gt;</span>
+        <span class="kw">&lt;title</span><span class="ot"> locale=</span><span class="st">&quot;fr_FR&quot;</span><span class="kw">&gt;</span>Un titre<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;/export_category&gt;</span>
+    <span class="kw">&lt;export_category</span><span class="ot"> id=</span><span class="st">&quot;your.other.category.id&quot;</span><span class="kw">&gt;</span>
+        <span class="co">&lt;!-- here&#39;s another import category --&gt;</span>
+    <span class="kw">&lt;/export_category&gt;</span>
+<span class="kw">&lt;/export_categories&gt;</span></code></pre></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>import</p></td>
+<td align="left"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;import</span><span class="ot"> id=</span><span class="st">&quot;your.import.id&quot;</span><span class="ot"> class=</span><span class="st">&quot;Your\ImportHandler&quot;</span><span class="ot"> category_id=</span><span class="st">&quot;the.category_id&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;en_US&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;title&gt;</span>Your import title <span class="kw">&lt;/title&gt;</span>
+         <span class="co">&lt;!-- you may add an optionnal description --&gt;</span>
+         <span class="kw">&lt;description&gt;</span> ... <span class="kw">&lt;/description&gt;</span>
+    <span class="kw">&lt;/descriptive&gt;</span>
+    <span class="kw">&lt;descriptive</span><span class="ot"> locale=</span><span class="st">&quot;fr_FR&quot;</span><span class="kw">&gt;</span>
+        <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
+    <span class="kw">&lt;/descriptive&gt;</span>
+<span class="kw">&lt;/import&gt;</span></code></pre>
+<p>On the import node, id, class and category_id properties are mandatories. id is an unique identifier and class the full path to the class.</p>
+<p>category_id possible values are :</p>
+<ul>
+<li>thelia.import.customer : Imports concerning customers</li>
+<li>thelia.import.products : Imports concerning products</li>
+<li>thelia.import.content : Imports concerning contents</li>
+<li>thelia.import.order : Imports concerning orders</li>
+<li>thelia.import.modules : module related imports</li>
+</ul></td>
 </tr>
 </tbody>
 </table>

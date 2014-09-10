@@ -109,6 +109,58 @@ creating new compilers, etc.
 |           | </export>                                                                                                |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
+|           | On the export node, id, class and category_id properties are mandatories. id is an unique identifier     |
+|           | and class the full path to the class.                                                                    |
+|           |                                                                                                          |
+|           | category_id possible values are :                                                                        |
+|           |                                                                                                          |
+|           | * thelia.export.customer : Exports concerning customers                                                  |
+|           | * thelia.export.products : Exports concerning products                                                   |
+|           | * thelia.export.content : Exports concerning contents                                                    |
+|           | * thelia.export.order : Exports concerning orders                                                        |
+|           | * thelia.export.modules : module related exports                                                         |
+|           |                                                                                                          |
+|           |                                                                                                          |
+|           | You can also create a custom category if you want. For this you have to put something like below :       |
+|           |                                                                                                          |
+|           | ```xml                                                                                                   |
+|           | <export_categories>                                                                                      |
+|           |     <export_category id="your.category.id">                                                              |
+|           |         <title locale="en_US">A title</title>                                                            |
+|           |         <title locale="fr_FR">Un titre</title>                                                           |
+|           |     </export_category>                                                                                   |
+|           |     <export_category id="your.other.category.id">                                                        |
+|           |         <!-- here's another import category -->                                                          |
+|           |     </export_category>                                                                                   |
+|           | </export_categories>                                                                                     |
+|           | ```                                                                                                      |
+|           |                                                                                                          |
+|           |                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------+
+|           |                                                                                                          |
+| import    | ```xml                                                                                                   |
+|           | <import id="your.import.id" class="Your\ImportHandler" category_id="the.category_id">                    |
+|           |     <descriptive locale="en_US">                                                                         |
+|           |         <title>Your import title </title>                                                                |
+|           |          <!-- you may add an optionnal description -->                                                   |
+|           |          <description> ... </description>                                                                |
+|           |     </descriptive>                                                                                       |
+|           |     <descriptive locale="fr_FR">                                                                         |
+|           |         <!-- Here's for another locale -->                                                               |
+|           |     </descriptive>                                                                                       |
+|           | </import>                                                                                                |
+|           | ```                                                                                                      |
+|           |                                                                                                          |
+|           | On the import node, id, class and category_id properties are mandatories. id is an unique identifier     |
+|           | and class the full path to the class.                                                                    |
+|           |                                                                                                          |
+|           | category_id possible values are :                                                                        |
+|           |                                                                                                          |
+|           | * thelia.import.customer : Imports concerning customers                                                  |
+|           | * thelia.import.products : Imports concerning products                                                   |
+|           | * thelia.import.content : Imports concerning contents                                                    |
+|           | * thelia.import.order : Imports concerning orders                                                        |
+|           | * thelia.import.modules : module related imports                                                         |
 |           |                                                                                                          |
 |           |                                                                                                          |
 +-----------+----------------------------------------------------------------------------------------------------------+

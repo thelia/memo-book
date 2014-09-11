@@ -271,7 +271,7 @@ v3 plugin.
 
 ### {loop} {/loop}
 
-the loop function have at least two mandatories parameter :
+the loop function have at least two mandatory parameter :
 
 +---------------+------------------------------------------------------------------------------------------------------+
 |Parameter      |Description                                                                                           |

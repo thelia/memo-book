@@ -2,8 +2,8 @@
 
 Modules are the best way to extend Thelia functionalities. Payment and delivery methods are all modules.
 
-A module has the exact same structure as Thelia's core and can interact with the container for adding its own services,
-creating new compilers, etc.
+The structure of a module is exactly the same as Thelia's core. A module can interact with the container in order
+to add its own services, to create new compilers, etc.
 
 ## Structure
 
@@ -63,36 +63,36 @@ creating new compilers, etc.
 +-----------+----------------------------------------------------------------------------------------------------------+
 |Tag        |Description                                                                                               |
 +===========+==========================================================================================================+
-|   loop    | declare a loop. name and class properties are mandatories. The name is a unique key and class the full   |
-|           | namespace for the loop class.                                                                            |
+|   loop    | Declare a loop. Name and class properties are mandatory. The name is a unique key and the class is the   |
+|           | full namespace for the loop class.                                                                       |
 +-----------+----------------------------------------------------------------------------------------------------------+
-|   form    | declare a form. name and class properties are mandatories. The name is a unique key and class the full   |
-|           | namespace for the form class.                                                                            |
+|   form    | Declare a form. Name and class properties are mandatory. The name is a unique key and the class is the   |
+|           | full namespace for the form class.                                                                       |
 +-----------+----------------------------------------------------------------------------------------------------------+
-|   command | declare a command. name property is mandatory. The class is the full namespace for the command class.    |
+|   command | Declare a command. Name property is mandatory. The class is the full namespace for the command class.    |
 +-----------+----------------------------------------------------------------------------------------------------------+
-|   service | Services are the exact same notion as symfony services. See de dedicated chapter below                   |
+|   service | Services are the exact same notion as for Symfony services. See the dedicated chapter below              |
 +-----------+----------------------------------------------------------------------------------------------------------+
-|   hook    | Hooks are entry point in your template in which the modules will insert their own code. For configuring a|
-|           | hook, you must declare them in the config.xml file. Example :                                            |
+|   hook    | Hooks are the entry points thanks to which modules will insert their own code. To configure hooks, you   |
+|           | must declare them in the config.xml file. Example :                                                      |
 |           | ```xml                                                                                                   |
 |           | <hook id="mymodule.hook" class="MyModule\Hook\MySuperHook" scope="request">                              |
 |           |     <tag name="hook.event_listener" event="main.body.bottom" type="front" method="onMainBodyBottom" />   |
 |           | </hook>                                                                                                  |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
-|           | On the hook node, id and class are mandatories. id is an unique identifier and class the full path to the|
-|           | class.                                                                                                   |
+|           | On the hook node, id and class are mandatory. The **id** is a unique identifier and the **class** the    |
+|           | full path to the class.                                                                                  |
 |           |                                                                                                          |
-|           | On the tag node, name and event are mandatories, the other are not and are explain just below :          |
+|           | On the tag node, name and event are mandatory. The others are not mandatory, here are more details :     |
 |           |                                                                                                          |
-|           | * ```name="hook.event_listener"``` : this never change                                                   |
-|           | * event : represents the hook code for which it wants to respond.                                        |
-|           | * type : indicate the context of the hook : frontOffice (default), backOffice, pdf or email.             |
-|           | * method : indicate the method to be called. By default, it will be based on the name of the hook.       |
-|           |   eg : for product.additional hook, the method onProductAdditional will be called                        |
+|           | * ```name="hook.event_listener"``` : this never changes.                                                 |
+|           | * event : represents the hook code to which it wants to respond.                                         |
+|           | * type : indicates the context of the hook : frontOffice (default), backOffice, pdf or email.            |
+|           | * method : indicates the name of the method to call. By default, it will be based on the name of the hook|
+|           |  . eg : for product.additional hook, the method will be called onProductAdditional                       |
 |           |   (CamelCase prefixed by on).                                                                            |
-|           | * active : allow you to activate the hook (set to 1 - default) or not (set to 0) when the module         |
+|           | * active : allows you to activate the hook (set to 1 - default) or not (set to 0) once the module        |
 |           |   is installed                                                                                           |
 +-----------+----------------------------------------------------------------------------------------------------------+
 |   export  |                                                                                                          |
@@ -109,15 +109,15 @@ creating new compilers, etc.
 |           | </export>                                                                                                |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
-|           | On the export node, id, class and category_id properties are mandatories. id is an unique identifier     |
-|           | and class the full path to the class.                                                                    |
+|           | On the export node, **id**, **class** and **category_id** properties are mandatory. **id** is a unique   |
+|           | identifier and class is the full path to the class.                                                      |
 |           |                                                                                                          |
-|           | category_id possible values are :                                                                        |
+|           | **category_id** possible values are :                                                                    |
 |           |                                                                                                          |
-|           | * thelia.export.customer : Exports concerning customers                                                  |
-|           | * thelia.export.products : Exports concerning products                                                   |
-|           | * thelia.export.content : Exports concerning contents                                                    |
-|           | * thelia.export.order : Exports concerning orders                                                        |
+|           | * thelia.export.customer : Exports the customers' data                                                   |
+|           | * thelia.export.products : Exports the products' data                                                    |
+|           | * thelia.export.content : Exports the contents' data                                                     |
+|           | * thelia.export.order : Exports the orders' data                                                         |
 |           | * thelia.export.modules : module related exports                                                         |
 |           |                                                                                                          |
 |           |                                                                                                          |
@@ -151,15 +151,15 @@ creating new compilers, etc.
 |           | </import>                                                                                                |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
-|           | On the import node, id, class and category_id properties are mandatories. id is an unique identifier     |
-|           | and class the full path to the class.                                                                    |
+|           | On the import node, **id**, **class** and **category_id** properties are mandatory. **id** is a          |
+|           | unique identifier and **class** is the full path to the class.                                           |
 |           |                                                                                                          |
 |           | category_id possible values are :                                                                        |
 |           |                                                                                                          |
-|           | * thelia.import.customer : Imports concerning customers                                                  |
-|           | * thelia.import.products : Imports concerning products                                                   |
-|           | * thelia.import.content : Imports concerning contents                                                    |
-|           | * thelia.import.order : Imports concerning orders                                                        |
+|           | * thelia.import.customer : Imports the customers' data                                                   |
+|           | * thelia.import.products : Imports the products' data                                                    |
+|           | * thelia.import.content : Imports the contents' data                                                     |
+|           | * thelia.import.order : Imports the orders' data                                                         |
 |           | * thelia.import.modules : module related imports                                                         |
 |           |                                                                                                          |
 |           |                                                                                                          |
@@ -167,8 +167,8 @@ creating new compilers, etc.
 
 ### Module.xml content
 
-Module.xml file is a description of your module. It contains who is the author and how to contact him, module version
-and with which version of Thelia it works.
+Module.xml file is a description of your module. includes the author's name, his contact details, module version
+and the version of Thelia it is compatible with.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -194,23 +194,23 @@ and with which version of Thelia it works.
 +---------------+------------------------------------------------------------------------------------------------------+
 |Tag            |Description                                                                                           |
 +===============+======================================================================================================+
-|fullnamespace  | The full namespace for the module's main class.                                                      |
+|fullnamespace  | The full namespace of the module's main class.                                                       |
 +---------------+------------------------------------------------------------------------------------------------------+
-|descriptive    | This block can be repeat for how many locales you want. It contains a title, subtitle, description   |
-|               | and postscriptum. Only the title is mandatory.                                                       |
+|descriptive    | This block can be repeatED as many locale as you want. It includes a title, subtitle,                |
+|               | description and postscriptum. Only the title is mandatory.                                           |
 +---------------+------------------------------------------------------------------------------------------------------+
 |version        | Module version                                                                                       |
 +---------------+------------------------------------------------------------------------------------------------------+
-|author         | Author information. It contains a name, a company, an email and a website tag. Only the name is      |
+|author         | Author information. It includes a name, a company, an email and a website tag. Only the name is      |
 |               | mandatory                                                                                            |
 +---------------+------------------------------------------------------------------------------------------------------+
-|type           | What type of your module. Can be one of the value below :                                            |
+|type           | The type of your module. It can be :                                                                 |
 |               |                                                                                                      |
 |               | * payment : your module is a payment gateway.                                                        |
 |               | * delivery : your module is a delivery platform.                                                     |
-|               | * classic : all other types.                                                                         |
+|               | * classic : all other types of modules.                                                              |
 +---------------+------------------------------------------------------------------------------------------------------+
-|thelia         | Which version of Thelia your module is compatible for.                                               |
+|thelia         | Which version of Thelia your module is compatible with.                                              |
 +---------------+------------------------------------------------------------------------------------------------------+
 |stability      | You module stability. Can be one of the value below :                                                |
 |               |                                                                                                      |
@@ -225,9 +225,9 @@ and with which version of Thelia it works.
 
 ## Routing
 
-Thelia uses the symfony-cmf routing component, so it's possible to declare how many routers needed and add them in this
-routing component.
-If you need a router you can do it in two different ways
+Thelia uses the Symfony-cmf Routing component, so it's possible to declare AS many routers AS are needed and add them in
+this routing component.
+If you need to add a router you can do it in two different ways
 
 ### The default behavior
 
@@ -239,7 +239,7 @@ and set a default priority (150) to it.
 If you need a custom configuration for your routing, you can declare a new service and tag this service and put
 ```router.register``` for the name property and the priority you want.
 
-Here an example :
+Here is an example :
 
 ```xml
 <service id="router.front" class="%router.class%">

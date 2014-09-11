@@ -243,3 +243,51 @@ List fo parameters
 +---------------+------------------------------------------------------------------------------------------------------+
 |thousands_sep  | Thousands separator. If omitted, the current locale parameter is taken                               |
 +---------------+------------------------------------------------------------------------------------------------------+
+
+## Loop system
+
+Loops are the most convenient feature in Thelia for front developers. Already there in Thelia's first version,
+they deserved a makeover for Thelia v2.
+Loops allow to gather data from your shop and display them in your front view. In Thelia v2, loops are a Smarty
+v3 plugin.
+
+### Syntax
+
+```html
+{ifloop rel="my_associated_content_loop"}
+    Associated contents for this product :
+    <ul>
+        {loop type="associated_content" name="my_associated_content_loop" product="12"}
+            <li>
+                <a href="{$URL}">{$TITLE}</a>
+            </li>
+        {/loop}
+    </ul>
+{/ifloop}
+{elseloop rel="my_associated_content_loop"}
+    No associated content for this product
+{/elseloop}
+```
+
+### {loop} {/loop}
+
+the loop function have at least two mandatories parameter :
+
++---------------+------------------------------------------------------------------------------------------------------+
+|Parameter      |Description                                                                                           |
++===============+======================================================================================================+
+|name           | A unique name for identifying the loop in other function (ifloop and elseloop)                       |
++---------------+------------------------------------------------------------------------------------------------------+
+|type           | The type of a loop is the type of data you want to retrieve. For the complete type list, see Thelia  |
+|               | documentation at [http://doc.thelia.net](http://doc.thelia.net)                                      |
++---------------+------------------------------------------------------------------------------------------------------+
+
+Each loop type define its own parameters, you can search this parameter in the Thelia documentation.
+
+### {ifloop}/{elseloop}
+
+{ifloop} and {elseloop} are conditional loops. They allow to define a different behaviour depending on if the a
+classic loop displays something or not.
+
+A conditional loop is therefore linked to a classic loop using the rel attribute which must match a classic loop
+name attribute.

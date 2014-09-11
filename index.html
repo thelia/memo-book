@@ -783,5 +783,47 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
+<h2 id="loop-system">Loop system</h2>
+<p>Loops are the most convenient feature in Thelia for front developers. Already there in Thelia's first version, they deserved a makeover for Thelia v2. Loops allow to gather data from your shop and display them in your front view. In Thelia v2, loops are a Smarty v3 plugin.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="sourceCode html"><code class="sourceCode html">{ifloop rel=&quot;my_associated_content_loop&quot;}
+    Associated contents for this product :
+    <span class="kw">&lt;ul&gt;</span>
+        {loop type=&quot;associated_content&quot; name=&quot;my_associated_content_loop&quot; product=&quot;12&quot;}
+            <span class="kw">&lt;li&gt;</span>
+                <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{$URL}&quot;</span><span class="kw">&gt;</span>{$TITLE}<span class="kw">&lt;/a&gt;</span>
+            <span class="kw">&lt;/li&gt;</span>
+        {/loop}
+    <span class="kw">&lt;/ul&gt;</span>
+{/ifloop}
+{elseloop rel=&quot;my_associated_content_loop&quot;}
+    No associated content for this product
+{/elseloop}</code></pre>
+<h3 id="loop-loop">{loop} {/loop}</h3>
+<p>the loop function have at least two mandatories parameter :</p>
+<table>
+<col width="13%" />
+<col width="86%" />
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>name</p></td>
+<td align="left"><p>A unique name for identifying the loop in other function (ifloop and elseloop)</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>type</p></td>
+<td align="left"><p>The type of a loop is the type of data you want to retrieve. For the complete type list, see Thelia documentation at <a href="http://doc.thelia.net">http://doc.thelia.net</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Each loop type define its own parameters, you can search this parameter in the Thelia documentation.</p>
+<h3 id="ifloopelseloop">{ifloop}/{elseloop}</h3>
+<p>{ifloop} and {elseloop} are conditional loops. They allow to define a different behaviour depending on if the a classic loop displays something or not.</p>
+<p>A conditional loop is therefore linked to a classic loop using the rel attribute which must match a classic loop name attribute.</p>
 </body>
 </html>

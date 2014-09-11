@@ -109,8 +109,8 @@ to add its own services, to create new compilers, etc.
 |           | </export>                                                                                                |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
-|           | On the export node, **id**, **class** and **category_id** properties are mandatory. **id** is a unique   |
-|           | identifier and class is the full path to the class.                                                      |
+|           | On the export node, **id**, **class** and **category_id** properties are mandatory. The **id** is a      |
+|           | unique identifier and the class is the full path to the class.                                           |
 |           |                                                                                                          |
 |           | **category_id** possible values are :                                                                    |
 |           |                                                                                                          |
@@ -151,8 +151,8 @@ to add its own services, to create new compilers, etc.
 |           | </import>                                                                                                |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
-|           | On the import node, **id**, **class** and **category_id** properties are mandatory. **id** is a          |
-|           | unique identifier and **class** is the full path to the class.                                           |
+|           | On the import node, **id**, **class** and **category_id** properties are mandatory. The **id** is a      |
+|           | unique identifier and the **class** is the full path to the class.                                       |
 |           |                                                                                                          |
 |           | category_id possible values are :                                                                        |
 |           |                                                                                                          |
@@ -196,7 +196,7 @@ and the version of Thelia it is compatible with.
 +===============+======================================================================================================+
 |fullnamespace  | The full namespace of the module's main class.                                                       |
 +---------------+------------------------------------------------------------------------------------------------------+
-|descriptive    | This block can be repeatED as many locale as you want. It includes a title, subtitle,                |
+|descriptive    | This block can be repeated as many locale as you want. It includes a title, subtitle,                |
 |               | description and postscriptum. Only the title is mandatory.                                           |
 +---------------+------------------------------------------------------------------------------------------------------+
 |version        | Module version                                                                                       |
@@ -225,7 +225,7 @@ and the version of Thelia it is compatible with.
 
 ## Routing
 
-Thelia uses the Symfony-cmf Routing component, so it's possible to declare AS many routers AS are needed and add them in
+Thelia uses the Symfony-cmf Routing component, so it's possible to declare as many routers as are needed and add them in
 this routing component.
 If you need to add a router you can do it in two different ways
 
@@ -256,33 +256,33 @@ Here is an example :
 
 ## Model
 
-Your module will maybe need to create tables, generate model classes and interact with Thelia's model.
+Your module may need to create tables, generate model classes and interact with Thelia's model. How to do ?
 
 1. Create the file schema.xml in your Config directory.
-2. Fill schema.xml file, you can find all the information you need in the propel documentation.
-3. Use the CLI tools for generating model and sql (```php Thelia module:generate:model MyModule --generate-sql```).
+2. Fill schema.xml file, you can find all the information you need in Propel documentation.
+3. Use the CLI tools to generate model and sql (```php Thelia module:generate:model MyModule --generate-sql```).
 
-Note : it's better to put the namespace property on each table attributes instead of the database attribute.
+Note : it's better to put the namespace property on each table attribute instead of the database attribute.
 
 ## Main class
 
 The main class in your module is the most important file. This class is used when the module is activated or
 deactivated.
 
-Most of time this class will have the same name as you module directory. If my module directory is **Atos**, my
+Most of the time this class will have the same name as you module directory. If my module directory is **Atos**, my
 main class will be **Atos** too and the full namespace will be **Atos\\Atos**.
 
-Depending of the type of your module, this class must extends a specific abstract class. Here is a list of all
+Depending of the type of your module, this class must extend a specific abstract class. Here is a list of all
 abstract classes :
 
 * **Thelia\\Module\\AbstractDeliveryModule** : Use this class when you develop a delivery module
 * **Thelia\\Module\\AbstractPaymentModule** : Use this class when you develop a payment module
 * **Thelia\\Module\\BaseModule** : Use this class when you develop a class module
 
-**AbstractDeliveryModule** and **AbstractPaymentModule** classes extends BaseModule class.
+**AbstractDeliveryModule** and **AbstractPaymentModule** classes extend the BaseModule class.
 
-Some methods in **BaseModule** can be useful if you want to interact with Thelia during installation or removal process.
-You just have to overload the method you want and implement your code.
+Some methods in **BaseModule** can be useful if you want to interact with Thelia during the installation or the removal
+process. You just have to overload the method you want and implement your code.
 
 +-----------------+----------------------------------------------------------------------------------------------------+
 |Method           |Description                                                                                         |
@@ -292,14 +292,14 @@ You just have to overload the method you want and implement your code.
 |postActivation   | This method is called just after the module was successfully activated. If an exception is thrown  |
 |                 | the procedure will be stopped and a rollback of the current transaction will be performed.         |
 +-----------------+----------------------------------------------------------------------------------------------------+
-|preDeactivation  | This method is called before the module de-activation, and may prevent it by returning false.      |
+|preDeactivation  | This method is called before the module deactivation, and may prevent it by returning false.      |
 +-----------------+----------------------------------------------------------------------------------------------------+
 |postDeactivation | This method is called just after the module was successfully deactivated. If an exception is thrown|
 |                 | the procedure will be stopped and a rollback of the current transaction will be performed.         |
 +-----------------+----------------------------------------------------------------------------------------------------+
 |getCompilers     | This method adds new compilers to Thelia container                                                 |
 +-----------------+----------------------------------------------------------------------------------------------------+
-|getHooks         | This method must be used when your module defines hooks.                                           |
+|getHooks         | This method must be used if your module defines hooks.                                             |
 +-----------------+----------------------------------------------------------------------------------------------------+
 
 Specific methods for **AbstractDeliveryModule**
@@ -310,7 +310,7 @@ Specific methods for **AbstractDeliveryModule**
 |isValidDelivery  | This method is called by the Delivery loop, to check if the current module has to be displayed     |
 |                 | to the customer. This method must be implemented in your module                                    |
 +-----------------+----------------------------------------------------------------------------------------------------+
-|getPostage       | Calculate and return delivery price in the shop's default currency. This method must be implemented|
+|getPostage       | This method calculates and returns the delivery price. This method must be implemented             |
 |                 | in your module                                                                                     |
 +-----------------+----------------------------------------------------------------------------------------------------+
 
@@ -319,13 +319,13 @@ Specific methods for **AbstractPaymentModule**
 +---------------------------+------------------------------------------------------------------------------------------+
 |Method                     |Description                                                                               |
 +===========================+==========================================================================================+
-|pay                        | Method used by payment gateway. This method must be implemented in your module           |
+|pay                        | Method used by payment gateways. This method must be implemented in your module          |
 +---------------------------+------------------------------------------------------------------------------------------+
-|isValidPayment             | This method is call on Payment loop, to check if the current module has to be displayed  |
-|                           | to the customer. This method must be implemented in your module                          |
+|isValidPayment             | This method is called by the Payment loop, to check if the current module has to be      |
+|                           | displayed to the customer. This method must be implemented in your module                |
 +---------------------------+------------------------------------------------------------------------------------------+
-|generateGatewayFormResponse| Render the payment gateway template. The module should provide the gateway URL           |
-|                           | and  the form fields names and values. This method is a helper                            |
+|generateGatewayFormResponse| This method renders the payment gateway template. The module should provide the gateway  |
+|                           | URL and  the form fields names and values. This method is a helper                       |
 +---------------------------+------------------------------------------------------------------------------------------+
 |getPaymentSuccessPageUrl   | Return the order payment success page URL                                                |
 +---------------------------+------------------------------------------------------------------------------------------+

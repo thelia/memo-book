@@ -279,7 +279,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
       <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
   <span class="kw">&lt;/descriptive&gt;</span>
 <span class="kw">&lt;/export&gt;</span></code></pre>
-<p>On the export node, <strong>id</strong>, <strong>class</strong> and <strong>category_id</strong> properties are mandatory. <strong>id</strong> is a unique identifier and class is the full path to the class.</p>
+<p>On the export node, <strong>id</strong>, <strong>class</strong> and <strong>category_id</strong> properties are mandatory. The <strong>id</strong> is a unique identifier and the class is the full path to the class.</p>
 <p><strong>category_id</strong> possible values are :</p>
 <ul>
 <li>thelia.export.customer : Exports the customers' data</li>
@@ -311,7 +311,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
         <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
     <span class="kw">&lt;/descriptive&gt;</span>
 <span class="kw">&lt;/import&gt;</span></code></pre>
-<p>On the import node, <strong>id</strong>, <strong>class</strong> and <strong>category_id</strong> properties are mandatory. <strong>id</strong> is a unique identifier and <strong>class</strong> is the full path to the class.</p>
+<p>On the import node, <strong>id</strong>, <strong>class</strong> and <strong>category_id</strong> properties are mandatory. The <strong>id</strong> is a unique identifier and the <strong>class</strong> is the full path to the class.</p>
 <p>category_id possible values are :</p>
 <ul>
 <li>thelia.import.customer : Imports the customers' data</li>
@@ -359,7 +359,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>descriptive</p></td>
-<td align="left"><p>This block can be repeatED as many locale as you want. It includes a title, subtitle, description and postscriptum. Only the title is mandatory.</p></td>
+<td align="left"><p>This block can be repeated as many locale as you want. It includes a title, subtitle, description and postscriptum. Only the title is mandatory.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>version</p></td>
@@ -396,7 +396,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h2 id="routing">Routing</h2>
-<p>Thelia uses the Symfony-cmf Routing component, so it's possible to declare AS many routers AS are needed and add them in this routing component. If you need to add a router you can do it in two different ways</p>
+<p>Thelia uses the Symfony-cmf Routing component, so it's possible to declare as many routers as are needed and add them in this routing component. If you need to add a router you can do it in two different ways</p>
 <h3 id="the-default-behavior">The default behavior</h3>
 <p>All you have to do is to create a file named routing.xml in your Config directory. Thelia will configure a new router and set a default priority (150) to it.</p>
 <h3 id="custom-routing">Custom routing</h3>
@@ -413,24 +413,24 @@ $ <span class="kw">php</span> Thelia</code></pre>
     <span class="kw">&lt;tag</span><span class="ot"> name=</span><span class="st">&quot;router.register&quot;</span><span class="ot"> priority=</span><span class="st">&quot;128&quot;</span><span class="kw">/&gt;</span>
 <span class="kw">&lt;/service&gt;</span></code></pre>
 <h2 id="model">Model</h2>
-<p>Your module will maybe need to create tables, generate model classes and interact with Thelia's model.</p>
+<p>Your module may need to create tables, generate model classes and interact with Thelia's model. How to do ?</p>
 <ol style="list-style-type: decimal">
 <li>Create the file schema.xml in your Config directory.</li>
-<li>Fill schema.xml file, you can find all the information you need in the propel documentation.</li>
-<li>Use the CLI tools for generating model and sql (<code>php Thelia module:generate:model MyModule --generate-sql</code>).</li>
+<li>Fill schema.xml file, you can find all the information you need in Propel documentation.</li>
+<li>Use the CLI tools to generate model and sql (<code>php Thelia module:generate:model MyModule --generate-sql</code>).</li>
 </ol>
-<p>Note : it's better to put the namespace property on each table attributes instead of the database attribute.</p>
+<p>Note : it's better to put the namespace property on each table attribute instead of the database attribute.</p>
 <h2 id="main-class">Main class</h2>
 <p>The main class in your module is the most important file. This class is used when the module is activated or deactivated.</p>
-<p>Most of time this class will have the same name as you module directory. If my module directory is <strong>Atos</strong>, my main class will be <strong>Atos</strong> too and the full namespace will be <strong>Atos\Atos</strong>.</p>
-<p>Depending of the type of your module, this class must extends a specific abstract class. Here is a list of all abstract classes :</p>
+<p>Most of the time this class will have the same name as you module directory. If my module directory is <strong>Atos</strong>, my main class will be <strong>Atos</strong> too and the full namespace will be <strong>Atos\Atos</strong>.</p>
+<p>Depending of the type of your module, this class must extend a specific abstract class. Here is a list of all abstract classes :</p>
 <ul>
 <li><strong>Thelia\Module\AbstractDeliveryModule</strong> : Use this class when you develop a delivery module</li>
 <li><strong>Thelia\Module\AbstractPaymentModule</strong> : Use this class when you develop a payment module</li>
 <li><strong>Thelia\Module\BaseModule</strong> : Use this class when you develop a class module</li>
 </ul>
-<p><strong>AbstractDeliveryModule</strong> and <strong>AbstractPaymentModule</strong> classes extends BaseModule class.</p>
-<p>Some methods in <strong>BaseModule</strong> can be useful if you want to interact with Thelia during installation or removal process. You just have to overload the method you want and implement your code.</p>
+<p><strong>AbstractDeliveryModule</strong> and <strong>AbstractPaymentModule</strong> classes extend the BaseModule class.</p>
+<p>Some methods in <strong>BaseModule</strong> can be useful if you want to interact with Thelia during the installation or the removal process. You just have to overload the method you want and implement your code.</p>
 <table>
 <col width="15%" />
 <col width="84%" />
@@ -451,7 +451,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="odd">
 <td align="left"><p>preDeactivation</p></td>
-<td align="left"><p>This method is called before the module de-activation, and may prevent it by returning false.</p></td>
+<td align="left"><p>This method is called before the module deactivation, and may prevent it by returning false.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>postDeactivation</p></td>
@@ -463,7 +463,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>getHooks</p></td>
-<td align="left"><p>This method must be used when your module defines hooks.</p></td>
+<td align="left"><p>This method must be used if your module defines hooks.</p></td>
 </tr>
 </tbody>
 </table>
@@ -484,7 +484,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>getPostage</p></td>
-<td align="left"><p>Calculate and return delivery price in the shop's default currency. This method must be implemented in your module</p></td>
+<td align="left"><p>This method calculates and returns the delivery price. This method must be implemented in your module</p></td>
 </tr>
 </tbody>
 </table>
@@ -501,15 +501,15 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><p>pay</p></td>
-<td align="left"><p>Method used by payment gateway. This method must be implemented in your module</p></td>
+<td align="left"><p>Method used by payment gateways. This method must be implemented in your module</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>isValidPayment</p></td>
-<td align="left"><p>This method is call on Payment loop, to check if the current module has to be displayed to the customer. This method must be implemented in your module</p></td>
+<td align="left"><p>This method is called by the Payment loop, to check if the current module has to be displayed to the customer. This method must be implemented in your module</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>generateGatewayFormResponse</p></td>
-<td align="left"><p>Render the payment gateway template. The module should provide the gateway URL and the form fields names and values. This method is a helper</p></td>
+<td align="left"><p>This method renders the payment gateway template. The module should provide the gateway URL and the form fields names and values. This method is a helper</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>getPaymentSuccessPageUrl</p></td>
@@ -522,28 +522,28 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h1 id="templating">Templating</h1>
-<p>Thelia templates uses the Smarty template engine, enriched by many Thelia additions, such as loops, data access functions, internationalization function, etc</p>
+<p>Thelia templates use the Smarty template engine, enriched by many Thelia additions, such as loops, data access functions, internationalization function, etc</p>
 <h2 id="structure-1">Structure</h2>
 <p>See Thelia structure for more information.</p>
-<p>Every template should contains specific template files, which are the views invoked in the Front and Back Offices controllers. For a front-office template, these files are :</p>
+<p>Every template should contain specific template files, which are the views invoked in the Front and Back Offices controllers. For a front-office template, these files are :</p>
 <ul>
-<li><strong>product.html</strong> : display a product.</li>
-<li><strong>content.html</strong> : display a contents.</li>
-<li><strong>category.html</strong> : displays a category contents.</li>
+<li><strong>product.html</strong> : displays a product.</li>
+<li><strong>content.html</strong> : displays a content.</li>
+<li><strong>category.html</strong> : displays a category's content.</li>
 <li><strong>feed.html</strong> : the RSS product or content feed.</li>
-<li><strong>folder.html</strong> : display a folder contents.</li>
+<li><strong>folder.html</strong> : display a folder content.</li>
 <li><strong>404.html</strong> : displayed if a page cannot be found.</li>
-<li><strong>order-delivery.html</strong> : display for choosing a delivery method.</li>
-<li><strong>order-failed.html</strong> : display when a payment failed.</li>
-<li><strong>order-invoice.html</strong> : display for choosing a payment gateway.</li>
-<li><strong>order-payment-gateway.html</strong> : fill by the payment gateway for sending a specific form to the platform.</li>
-<li><strong>order-placed.html</strong> : display for a success payment.</li>
+<li><strong>order-delivery.html</strong> : is displayed during ordering process to choose a delivery method</li>
+<li><strong>order-invoice.html</strong> : is displayed during ordering process to choose a payment gateway.</li>
+<li><strong>order-failed.html</strong> : is displayed when a payment failed.</li>
+<li><strong>order-payment-gateway.html</strong> : filled by the payment gateway to send to the platform a specific form.</li>
+<li><strong>order-placed.html</strong> : is displayed once the payment si successfully performed</li>
 </ul>
 <h2 id="assets-management">Assets management</h2>
 <p>Template assets are managed in a sub-directory of the template directory. For example, the default front-office template contains an 'assets' directory to store all template's assets.</p>
 <p>To use this feature, you'll have to add some specific directives to your template files.</p>
 <h3 id="declare_assets">{declare_assets}</h3>
-<p>This directive tells the Thelia template system where your assets are located, e.g. the name of the root directory which contains all your assets.</p>
+<p>This directive tells Thelia's template system where your assets are located, e.g. the name of the root directory which contains all your assets.</p>
 <p>Example :</p>
 <pre class="sourceCode JavaScript"><code class="sourceCode javascript">{declare_assets directory=<span class="st">&quot;assets&quot;</span>}</code></pre>
 <h3 id="stylesheets">{stylesheets}</h3>
@@ -552,7 +552,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <pre class="sourceCode JavaScript"><code class="sourceCode javascript">{stylesheets file=<span class="st">&quot;assets/css/*.less&quot;</span> filters=<span class="st">&quot;less&quot;</span>}
     &lt;link href=<span class="st">&quot;{$asset_url}&quot;</span> rel=<span class="st">&quot;stylesheet&quot;</span> type=<span class="st">&quot;text/css&quot;</span> <span class="ot">/&gt;</span>
 <span class="ot">{/stylesheets</span>}</code></pre>
-<p>This block return only one parameter, $asset_url, which is the asset URL in the web space, e.g. under the web/assets path.</p>
+<p>This block returns only one parameter, $asset_url, which is the asset URL in the web directory, e.g. under the web/assets path.</p>
 <p>List of parameters</p>
 <table>
 <col width="23%" />
@@ -588,12 +588,12 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h3 id="images">{images}</h3>
-<p>This directive process your statics images used in your template.</p>
+<p>This directive processes the static images used in your template.</p>
 <p>Example :</p>
 <pre class="sourceCode JavaScript"><code class="sourceCode javascript">{images file=<span class="st">&#39;assets/img/favicon.ico&#39;</span>}
     &lt;link rel=<span class="st">&quot;shortcut icon&quot;</span> type=<span class="st">&quot;image/x-icon&quot;</span> href=<span class="st">&quot;{$asset_url}&quot;</span>&gt;
 {<span class="ot">/images}</span></code></pre>
-<p>This block return only one parameter, $asset_url, which is the asset URL in the web space, e.g. under the web/assets path.</p>
+<p>This block returns only one parameter, $asset_url, which is the asset URL in the web directory, e.g. under the web/assets path.</p>
 <p>List of parameters</p>
 <table>
 <col width="23%" />
@@ -611,7 +611,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>source</p></td>
-<td align="left"><p>When in the templates files of a module, use this parameter to specify that the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
+<td align="left"><p>When the asset is in a module directory, you need to use this parameter to specify what the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>template</p></td>
@@ -620,7 +620,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h3 id="javascripts">{javascripts}</h3>
-<p>This directive process your javascript files</p>
+<p>This directive processes your javascript files</p>
 <p>Example :</p>
 <pre class="sourceCode JavaScript"><code class="sourceCode javascript">{javascripts file=<span class="st">&#39;assets/js/script.js&#39;</span>}
     &lt;script type=<span class="st">&quot;text/javascript&quot;</span> src=<span class="st">&quot;{$asset_url}&quot;</span>&gt;&lt;<span class="ot">/script&gt;</span>
@@ -642,7 +642,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>source</p></td>
-<td align="left"><p>When in the templates files of a module, use this parameter to specify that the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
+<td align="left"><p>When the asset is in a module directory, you need to use this parameter to specify what the source of the asset has to be searched within the module's path instead of the main template path.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>template</p></td>
@@ -651,7 +651,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h2 id="internationalization">Internationalization</h2>
-<p>If you want to create multilingual compatible templates, you have to pay a special attention to : - static text - date formatting - number formatting - money formatting</p>
+<p>If you want to create multilingual compatible templates, you have to pay special attention to : - static text - date formatting - number formatting</p>
 <p>Thelia provides several Smarty functions to help you.</p>
 <h3 id="intl">{intl}</h3>
 <p>The {intl} function translates a string into the current language.</p>
@@ -670,7 +670,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><p>l</p></td>
-<td align="left"><p>The l parameter contains the string that will be translated. This string should not contains any variable, such as {intl l=&quot;Hello, <span class="math">$name, how do you do ?&quot;}, internal variables should be used instead. Every %varname found in the string will be replaced by the value of the varname parameter. For example: {intl l=&quot;Hello, %user, how do you do ?&quot; user=$</span>name} is fine.</p>
+<td align="left"><p>The l parameter contains the string that will be translated. This string should not contain any variable, such as {intl l=&quot;Hello, <span class="math">$name, how do you do ?&quot;}, internal variables should be used instead. Every %varname found in the string will be replaced by the value of the varname parameter. For example: {intl l=&quot;Hello, %user, how do you do ?&quot; user=$</span>name} is fine.</p>
 <p>If no translation can be found for a given string, the translator will return either the value of the l parameter, or an empty string, depending on the &quot;Languages &amp; URLs&quot; parameters.</p></td>
 </tr>
 <tr class="even">
@@ -691,7 +691,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </ul></li>
 </ul>
 <p>This parameter is mostly used in modules. Other templates (front-office, back-office, PDF and email) may use the {default_translation_domain} function to define a template-wide message domain, and the d parameter could then be omitted.</p>
-<p>For examples, in the layout.tpl file of the default front-office template, you'll find {default_translation_domain domain='fo.default'}.</p></td>
+<p>For example, in the layout.tpl file of the default front-office template, you'll find {default_translation_domain domain='fo.default'}.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>js</p></td>
@@ -705,7 +705,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <p>Use this function to format a date according to the current locale standards.</p>
 <p>example :</p>
 <pre class="sourceCode JavaScript"><code class="sourceCode javascript">{format_date date=$dateTimeObject}</code></pre>
-<p>List fo parameters</p>
+<p>List of parameters</p>
 <table>
 <col width="10%" />
 <col width="89%" />
@@ -736,7 +736,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h3 id="format_number">{format_number}</h3>
-<p>Use this function to format a number according to the current locale standards, or a specific format.</p>
+<p>Use this function to format a number according to the current locale standards, or to a specific format.</p>
 <p>Example :</p>
 <pre class="sourceCode JavaScript"><code class="sourceCode javascript">Outputs <span class="st">&quot;1246,12&quot;</span> <span class="kw">if</span> locale is fr_FR, <span class="dv">1</span> <span class="fl">246.12</span> <span class="kw">if</span> locale is en_US
 {format_number number=<span class="st">&quot;1246.12&quot;</span>}</code></pre>
@@ -757,7 +757,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>decimals</p></td>
-<td align="left"><p>How many decimals format expected. If omitted, the current locale parameter is taken</p></td>
+<td align="left"><p>Number of decimals expected. If omitted, the current locale parameter is taken</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>dec_point</p></td>
@@ -770,7 +770,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h2 id="loop-system">Loop system</h2>
-<p>Loops are the most convenient feature in Thelia for front developers. Already there in Thelia's first version, they deserved a makeover for Thelia v2. Loops allow to gather data from your shop and display them in your front view. In Thelia v2, loops are a Smarty v3 plugin.</p>
+<p>Loops are the most convenient feature in Thelia for frontend developers. Already there in Thelia's first version, they have to be improved for Thelia v2. Loops allow to gather data from your shop and display them in your front view. In Thelia v2, loops are a Smarty v3 plugin.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="sourceCode html"><code class="sourceCode html">{ifloop rel=&quot;my_associated_content_loop&quot;}
     Associated contents for this product :
@@ -786,7 +786,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
     No associated content for this product
 {/elseloop}</code></pre>
 <h3 id="loop-loop">{loop} {/loop}</h3>
-<p>the loop function have at least two mandatory parameter :</p>
+<p>the loop function have at least two mandatory parameters :</p>
 <table>
 <col width="13%" />
 <col width="86%" />
@@ -799,7 +799,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><p>name</p></td>
-<td align="left"><p>A unique name for identifying the loop in other function (ifloop and elseloop)</p></td>
+<td align="left"><p>A unique name used to identify the loop in other functions (ifloop and elseloop)</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>type</p></td>
@@ -807,15 +807,18 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Each loop type define its own parameters, you can search this parameter in the Thelia documentation.</p>
+<p>Each loop type defines its own parameters, you can search this parameter in Thelia documentation.</p>
 <h3 id="ifloopelseloop">{ifloop}/{elseloop}</h3>
 <p>{ifloop} and {elseloop} are conditional loops. They allow to define a different behaviour depending on if the a classic loop displays something or not.</p>
-<p>A conditional loop is therefore linked to a classic loop using the rel attribute which must match a classic loop name attribute.</p>
+<p>A conditional loop is therefore linked to a classic loop using the rel attribute which must match a classic loop named attribute.</p>
 <h1 id="resources">Resources</h1>
 <ul>
 <li>Documentation : <a href="http://doc.thelia.net">http://doc.thelia.net</a></li>
 <li>Github repo : <a href="https://github.com/thelia/thelia">https://github.com/thelia/thelia</a></li>
-<li>Main website : <a href="http://thelia.net">http://thelia.net</a></li>
+<li>Website : <a href="http://thelia.net">http://thelia.net</a></li>
 </ul>
+<p>Contact : dev@thelia.net</p>
+<p>Authors : Manuel Raynaud, Julien Chanséaume, Benjamin Perche, Franck Allimant</p>
+<p>Acknowledgements : Damien Souza, Stéphanie Pinet, Marion Laurent</p>
 </body>
 </html>

@@ -30,7 +30,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </head>
 <body>
 <h1 id="introduction">Introduction</h1>
-<p>Thelia is an open source tool for creating e-business websites and managing online content. Created in 2005, The new version of Thelia aims to be the next generation E-commerce system. It is based on Symfony 2 components and meets the following objectives : performance and scalability. #Installation</p>
+<p>Thelia is an open source tool for creating e-business websites and managing online content. Created in 2005, the new version of Thelia aims to be the next generation E-commerce system. It is based on Symfony 2 components and meets the following objectives : performance and scalability. #Installation</p>
 <h2 id="requirements">Requirements</h2>
 <p>Thelia needs at least php 5.4 and works with php 5.5 and 5.6 for now. For the database, Thelia requires at least mysql 5.5.</p>
 <h2 id="php-extensions">PHP extensions</h2>
@@ -41,24 +41,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>curl</li>
 <li>gd</li>
 </ul>
-<h2 id="download-thelia">Download Thelia</h2>
-<p>You can download Thelia in two different ways</p>
-<h3 id="from-the-thelia-website">From the Thelia website</h3>
-<p>Go to the thelia website (http://thelia.net) and download it.</p>
-<h3 id="using-composer">Using Composer</h3>
+<h2 id="download-and-install-thelia">Download and install Thelia</h2>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -sS https://getcomposer.org/installer <span class="kw">|</span> <span class="kw">php</span>
-$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.0.3</code></pre>
-<h2 id="install-thelia">Install Thelia</h2>
-<p>First of all, create a vhost dedicated to Thelia and put the documentRoot in the web directory.</p>
-<p>Here again you can install Thelia in two different ways</p>
-<h3 id="using-install-wizard">Using install wizard</h3>
-<p>with your favorite browser, navigate to the install directory :</p>
-<p>http://yourdomain.tld/[/subdomain_if_needed]/install</p>
-<p>For example, I have thelia downloaded at http://thelia.net and my vhost is correctly configured, I have to go to this address :</p>
-<p>http://thelia.net/install</p>
-<h3 id="using-cli-tools">Using cli tools</h3>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">php</span> Thelia thelia:install</code></pre>
-<p>and follow the instructions</p>
+$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.0.3
+$ <span class="kw">php</span> Thelia thelia:install</code></pre>
 <p><strong>After installing Thelia, remove the web/install directory</strong></p>
 <h1 id="thelias-structure">Thelia's structure</h1>
 <p>After the installation you have an architecture like this</p>
@@ -191,7 +177,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </table>
 <h1 id="modules">Modules</h1>
 <p>Modules are the best way to extend Thelia functionalities. Payment and delivery methods are all modules.</p>
-<p>A module has the exact same structure as Thelia's core and can interact with the container for adding its own services, creating new compilers, etc.</p>
+<p>The structure of a module is exactly the same as Thelia's core. A module can interact with the container in order to add its own services, to create new compilers, etc.</p>
 <h2 id="structure">Structure</h2>
 <pre><code>\MyModule
     \Config
@@ -251,34 +237,34 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><p>loop</p></td>
-<td align="left"><p>declare a loop. name and class properties are mandatories. The name is a unique key and class the full namespace for the loop class.</p></td>
+<td align="left"><p>Declare a loop. Name and class properties are mandatory. The name is a unique key and the class is the full namespace for the loop class.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>form</p></td>
-<td align="left"><p>declare a form. name and class properties are mandatories. The name is a unique key and class the full namespace for the form class.</p></td>
+<td align="left"><p>Declare a form. Name and class properties are mandatory. The name is a unique key and the class is the full namespace for the form class.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>command</p></td>
-<td align="left"><p>declare a command. name property is mandatory. The class is the full namespace for the command class.</p></td>
+<td align="left"><p>Declare a command. Name property is mandatory. The class is the full namespace for the command class.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>service</p></td>
-<td align="left"><p>Services are the exact same notion as symfony services. See de dedicated chapter below</p></td>
+<td align="left"><p>Services are the exact same notion as for Symfony services. See the dedicated chapter below</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>hook</p></td>
-<td align="left"><p>Hooks are entry point in your template in which the modules will insert their own code. For configuring a hook, you must declare them in the config.xml file. Example :</p>
+<td align="left"><p>Hooks are the entry points thanks to which modules will insert their own code. To configure hooks, you must declare them in the config.xml file. Example :</p>
 <pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;hook</span><span class="ot"> id=</span><span class="st">&quot;mymodule.hook&quot;</span><span class="ot"> class=</span><span class="st">&quot;MyModule\Hook\MySuperHook&quot;</span><span class="ot"> scope=</span><span class="st">&quot;request&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;tag</span><span class="ot"> name=</span><span class="st">&quot;hook.event_listener&quot;</span><span class="ot"> event=</span><span class="st">&quot;main.body.bottom&quot;</span><span class="ot"> type=</span><span class="st">&quot;front&quot;</span><span class="ot"> method=</span><span class="st">&quot;onMainBodyBottom&quot;</span> <span class="kw">/&gt;</span>
 <span class="kw">&lt;/hook&gt;</span></code></pre>
-<p>On the hook node, id and class are mandatories. id is an unique identifier and class the full path to the class.</p>
-<p>On the tag node, name and event are mandatories, the other are not and are explain just below :</p>
+<p>On the hook node, id and class are mandatory. The <strong>id</strong> is a unique identifier and the <strong>class</strong> the full path to the class.</p>
+<p>On the tag node, name and event are mandatory. The others are not mandatory, here are more details :</p>
 <ul>
-<li><code>name=&quot;hook.event_listener&quot;</code> : this never change</li>
-<li>event : represents the hook code for which it wants to respond.</li>
-<li>type : indicate the context of the hook : frontOffice (default), backOffice, pdf or email.</li>
-<li>method : indicate the method to be called. By default, it will be based on the name of the hook. eg : for product.additional hook, the method onProductAdditional will be called (CamelCase prefixed by on).</li>
-<li>active : allow you to activate the hook (set to 1 - default) or not (set to 0) when the module is installed</li>
+<li><code>name=&quot;hook.event_listener&quot;</code> : this never changes.</li>
+<li>event : represents the hook code to which it wants to respond.</li>
+<li>type : indicates the context of the hook : frontOffice (default), backOffice, pdf or email.</li>
+<li>method : indicates the name of the method to call. By default, it will be based on the name of the hook . eg : for product.additional hook, the method will be called onProductAdditional (CamelCase prefixed by on).</li>
+<li>active : allows you to activate the hook (set to 1 - default) or not (set to 0) once the module is installed</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -293,13 +279,13 @@ $ <span class="kw">php</span> Thelia</code></pre>
       <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
   <span class="kw">&lt;/descriptive&gt;</span>
 <span class="kw">&lt;/export&gt;</span></code></pre>
-<p>On the export node, id, class and category_id properties are mandatories. id is an unique identifier and class the full path to the class.</p>
-<p>category_id possible values are :</p>
+<p>On the export node, <strong>id</strong>, <strong>class</strong> and <strong>category_id</strong> properties are mandatory. <strong>id</strong> is a unique identifier and class is the full path to the class.</p>
+<p><strong>category_id</strong> possible values are :</p>
 <ul>
-<li>thelia.export.customer : Exports concerning customers</li>
-<li>thelia.export.products : Exports concerning products</li>
-<li>thelia.export.content : Exports concerning contents</li>
-<li>thelia.export.order : Exports concerning orders</li>
+<li>thelia.export.customer : Exports the customers' data</li>
+<li>thelia.export.products : Exports the products' data</li>
+<li>thelia.export.content : Exports the contents' data</li>
+<li>thelia.export.order : Exports the orders' data</li>
 <li>thelia.export.modules : module related exports</li>
 </ul>
 <p>You can also create a custom category if you want. For this you have to put something like below :</p>
@@ -325,20 +311,20 @@ $ <span class="kw">php</span> Thelia</code></pre>
         <span class="co">&lt;!-- Here&#39;s for another locale --&gt;</span>
     <span class="kw">&lt;/descriptive&gt;</span>
 <span class="kw">&lt;/import&gt;</span></code></pre>
-<p>On the import node, id, class and category_id properties are mandatories. id is an unique identifier and class the full path to the class.</p>
+<p>On the import node, <strong>id</strong>, <strong>class</strong> and <strong>category_id</strong> properties are mandatory. <strong>id</strong> is a unique identifier and <strong>class</strong> is the full path to the class.</p>
 <p>category_id possible values are :</p>
 <ul>
-<li>thelia.import.customer : Imports concerning customers</li>
-<li>thelia.import.products : Imports concerning products</li>
-<li>thelia.import.content : Imports concerning contents</li>
-<li>thelia.import.order : Imports concerning orders</li>
+<li>thelia.import.customer : Imports the customers' data</li>
+<li>thelia.import.products : Imports the products' data</li>
+<li>thelia.import.content : Imports the contents' data</li>
+<li>thelia.import.order : Imports the orders' data</li>
 <li>thelia.import.modules : module related imports</li>
 </ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="module.xml-content">Module.xml content</h3>
-<p>Module.xml file is a description of your module. It contains who is the author and how to contact him, module version and with which version of Thelia it works.</p>
+<p>Module.xml file is a description of your module. includes the author's name, his contact details, module version and the version of Thelia it is compatible with.</p>
 <pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
 <span class="kw">&lt;module&gt;</span>
     <span class="kw">&lt;fullnamespace&gt;</span>Atos\Atos<span class="kw">&lt;/fullnamespace&gt;</span>
@@ -369,11 +355,11 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><p>fullnamespace</p></td>
-<td align="left"><p>The full namespace for the module's main class.</p></td>
+<td align="left"><p>The full namespace of the module's main class.</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>descriptive</p></td>
-<td align="left"><p>This block can be repeat for how many locales you want. It contains a title, subtitle, description and postscriptum. Only the title is mandatory.</p></td>
+<td align="left"><p>This block can be repeatED as many locale as you want. It includes a title, subtitle, description and postscriptum. Only the title is mandatory.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>version</p></td>
@@ -381,20 +367,20 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tr>
 <tr class="even">
 <td align="left"><p>author</p></td>
-<td align="left"><p>Author information. It contains a name, a company, an email and a website tag. Only the name is mandatory</p></td>
+<td align="left"><p>Author information. It includes a name, a company, an email and a website tag. Only the name is mandatory</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>type</p></td>
-<td align="left"><p>What type of your module. Can be one of the value below :</p>
+<td align="left"><p>The type of your module. It can be :</p>
 <ul>
 <li>payment : your module is a payment gateway.</li>
 <li>delivery : your module is a delivery platform.</li>
-<li>classic : all other types.</li>
+<li>classic : all other types of modules.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td align="left"><p>thelia</p></td>
-<td align="left"><p>Which version of Thelia your module is compatible for.</p></td>
+<td align="left"><p>Which version of Thelia your module is compatible with.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>stability</p></td>
@@ -410,12 +396,12 @@ $ <span class="kw">php</span> Thelia</code></pre>
 </tbody>
 </table>
 <h2 id="routing">Routing</h2>
-<p>Thelia uses the symfony-cmf routing component, so it's possible to declare how many routers needed and add them in this routing component. If you need a router you can do it in two different ways</p>
+<p>Thelia uses the Symfony-cmf Routing component, so it's possible to declare AS many routers AS are needed and add them in this routing component. If you need to add a router you can do it in two different ways</p>
 <h3 id="the-default-behavior">The default behavior</h3>
 <p>All you have to do is to create a file named routing.xml in your Config directory. Thelia will configure a new router and set a default priority (150) to it.</p>
 <h3 id="custom-routing">Custom routing</h3>
 <p>If you need a custom configuration for your routing, you can declare a new service and tag this service and put <code>router.register</code> for the name property and the priority you want.</p>
-<p>Here an example :</p>
+<p>Here is an example :</p>
 <pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;service</span><span class="ot"> id=</span><span class="st">&quot;router.front&quot;</span><span class="ot"> class=</span><span class="st">&quot;%router.class%&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;argument</span><span class="ot"> type=</span><span class="st">&quot;service&quot;</span><span class="ot"> id=</span><span class="st">&quot;router.module.xmlLoader&quot;</span><span class="kw">/&gt;</span>
     <span class="kw">&lt;argument&gt;</span>Front/Config/front.xml<span class="kw">&lt;/argument&gt;</span>
@@ -800,7 +786,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
     No associated content for this product
 {/elseloop}</code></pre>
 <h3 id="loop-loop">{loop} {/loop}</h3>
-<p>the loop function have at least two mandatories parameter :</p>
+<p>the loop function have at least two mandatory parameter :</p>
 <table>
 <col width="13%" />
 <col width="86%" />

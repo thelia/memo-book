@@ -45,7 +45,6 @@ to add its own services, to create new compilers, etc.
         <services>
             <service id="Mymodule.service.id" class="MyModule\MySuperService"/>
         </services>
-        -->
 
         <hooks>
             <hook id="mymodule.hook" class="MyModule\Hook\MySuperHook" scope="request">
@@ -100,7 +99,7 @@ to add its own services, to create new compilers, etc.
 |           | <export id="your.export.id" class="Your\ExportHandler" category_id="the.category_id">                    |
 |           |   <descriptive locale="en_US">                                                                           |
 |           |       <title>Your export title </title>                                                                  |
-|           |       <!-- you may add an optionnal description -->                                                      |
+|           |       <!-- you may add an optional description -->                                                      |
 |           |       <description> ... </description>                                                                   |
 |           |   </descriptive>                                                                                         |
 |           |   <descriptive locale="fr_FR">                                                                           |
@@ -142,7 +141,7 @@ to add its own services, to create new compilers, etc.
 |           | <import id="your.import.id" class="Your\ImportHandler" category_id="the.category_id">                    |
 |           |     <descriptive locale="en_US">                                                                         |
 |           |         <title>Your import title </title>                                                                |
-|           |          <!-- you may add an optionnal description -->                                                   |
+|           |          <!-- you may add an optional description -->                                                   |
 |           |          <description> ... </description>                                                                |
 |           |     </descriptive>                                                                                       |
 |           |     <descriptive locale="fr_FR">                                                                         |

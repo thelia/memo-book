@@ -291,3 +291,4 @@ classic loop displays something or not.
 
 A conditional loop is therefore linked to a classic loop using the rel attribute which must match a classic loop
 name attribute.
+

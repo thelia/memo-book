@@ -1,7 +1,7 @@
 # CLI Tools
 
-Thelia has a command line tools that can help you automate repetitive task
-. Obviously you can develop your own command.
+Thelia has a command line tools that can help you automate repetitive tasks.
+Obviously you can develop your own command.
 
 ## Usage
 
@@ -24,7 +24,7 @@ List of available commands :
 | module:activate | Activate a module | ```$ php Thelia module:activate module-name ``` |
 | module:deactivate | Deactivate a module | ```$ php Thelia module:deactivate module-name ``` |
 | module:generate | Generate all needed files for creating a new Module | ```$ php Thelia module:generate module-name ``` |
-| module:generate:model | Generate model for a specific module | ``` $ php Thelia module:generate:module module-name [--generate-sql]``` |
+| module:generate:model | Generate model for a specific module | ``` $ php Thelia module:generate:model module-name [--generate-sql]``` |
 | module:generate:sql | Generate the sql from schema.xml file for a specific module | ```$ php Thelia module:generate:sql module-name``` |
 | module:refresh | Refresh module list | ```$ php Thelia module:refresh``` |
 | thelia:dev:reloadDB | Erase current database and create new one. **all your data will be lost** | ```$ php Thelia thelia:dev:reloadDB``` |

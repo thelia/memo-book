@@ -42,10 +42,24 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>curl</li>
 <li>gd</li>
 </ul>
-<h2 id="download-and-install-thelia">Download and install Thelia</h2>
+<h2 id="download-thelia">Download Thelia</h2>
+<p>You can download Thelia in two different ways</p>
+<h3 id="from-the-thelia-website">From the Thelia website</h3>
+<p>Go to the thelia website (http://thelia.net) and download it.</p>
+<h3 id="using-composer">Using Composer</h3>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -sS https://getcomposer.org/installer <span class="kw">|</span> <span class="kw">php</span>
-$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.0.3
-$ <span class="kw">php</span> Thelia thelia:install</code></pre>
+$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.0.3</code></pre>
+<h2 id="install-thelia">Install Thelia</h2>
+<p>First of all, create a vhost dedicated to Thelia and put the documentRoot in the web directory.</p>
+<p>Here again you can install Thelia in two different ways</p>
+<h3 id="using-install-wizard">Using install wizard</h3>
+<p>with your favorite browser, navigate to the install directory :</p>
+<p>http://yourdomain.tld/[/subdomain_if_needed]/install</p>
+<p>For example, I have thelia downloaded at http://thelia.net and my vhost is correctly configured, I have to go to this address :</p>
+<p>http://thelia.net/install</p>
+<h3 id="using-cli-tools">Using cli tools</h3>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">php</span> Thelia thelia:install</code></pre>
+<p>and follow the instructions</p>
 <p><strong>After installing Thelia, remove the web/install directory</strong></p>
 <h1 id="thelias-structure">Thelia's structure</h1>
 <p>After the installation you have an architecture like this</p>

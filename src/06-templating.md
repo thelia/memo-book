@@ -15,13 +15,13 @@ For a front-office template, these files are :
 * **content.html** : displays a content.
 * **category.html** : displays a category's content.
 * **feed.html** : the RSS product or content feed.
-* **folder.html** : display a folder content.
-* **404.html** : displayed if a page cannot be found.
+* **folder.html** : displays a folder content.
+* **404.html** : is displayed if a page cannot be found.
 * **order-delivery.html** : is displayed during ordering process to choose a delivery method
 * **order-invoice.html** : is displayed during ordering process to choose a payment gateway.
-* **order-failed.html** : is displayed when a payment failed.
+* **order-failed.html** : is displayed when a payment fails.
 * **order-payment-gateway.html** : filled by the payment gateway to send to the platform a specific form.
-* **order-placed.html** : is displayed once the payment si successfully performed
+* **order-placed.html** : is displayed once the payment is successfully performed
 
 
 ## Assets management
@@ -66,9 +66,9 @@ List of parameters
 +---------------------------+------------------------------------------------------------------------------------------+
 |filters                    | Apply a filter to the source(s) files. Available filters are :                           |
 |                           |                                                                                          |
-|                           | * less : compile CSS using the LESS compiler                                             |
-|                           | * sass : compile CSS using the SASS compiler                                             |
-|                           | * compass : compile CSS using the Compass compiler                                       |
+|                           | * less : compiles CSS using the LESS compiler                                            |
+|                           | * sass : compiles CSS using the SASS compiler                                            |
+|                           | * compass : compiles CSS using the Compass compiler                                      |
 +---------------------------+------------------------------------------------------------------------------------------+
 |source                     | When in the templates files of a module, use this parameter to specify that the source of|
 |                           | the asset has to be searched within the module's path instead of the main template path. |
@@ -99,7 +99,7 @@ List of parameters
 |file                       | This is the path to the file (jokers like '*' are **NOT** allowed),                      |
 |                           | relative to the template base path.                                                      |
 +---------------------------+------------------------------------------------------------------------------------------+
-|source                     | When the asset is in a module directory, you need to use this parameter to specify what  |
+|source                     | When the asset is in a module directory, you need to use this parameter to specify that  |
 |                           | the source of the asset has to be searched within the module's path instead of the main  |
 |                           | template path.                                                                           |
 +---------------------------+------------------------------------------------------------------------------------------+
@@ -128,7 +128,7 @@ List of parameters
 |file                       | This is the path to the file (or files, as jokers like '*' are allowed),                 |
 |                           | relative to the template base path.                                                      |
 +---------------------------+------------------------------------------------------------------------------------------+
-|source                     | When the asset is in a module directory, you need to use this parameter to specify what  |
+|source                     | When the asset is in a module directory, you need to use this parameter to specify that  |
 |                           | the source of the asset has to be searched within the module's path instead of the main  |
 |                           | template path.                                                                           |
 +---------------------------+------------------------------------------------------------------------------------------+

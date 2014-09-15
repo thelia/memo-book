@@ -80,7 +80,7 @@ to add its own services, to create new compilers, etc.
 |           | </hook>                                                                                                  |
 |           | ```                                                                                                      |
 |           |                                                                                                          |
-|           | On the hook node, id and class are mandatory. The **id** is a unique identifier and the **class** the    |
+|           | On the hook node, id and class are mandatory. The **id** is a unique identifier and the **class** is the |
 |           | full path to the class.                                                                                  |
 |           |                                                                                                          |
 |           | On the tag node, name and event are mandatory. The others are not mandatory, here are more details :     |
@@ -166,7 +166,7 @@ to add its own services, to create new compilers, etc.
 
 ### Module.xml content
 
-Module.xml file is a description of your module. includes the author's name, his contact details, module version
+Module.xml file is a description of your module. It includes the author's name, his contact details, module version
 and the version of Thelia it is compatible with.
 
 ```xml
@@ -195,7 +195,7 @@ and the version of Thelia it is compatible with.
 +===============+======================================================================================================+
 |fullnamespace  | The full namespace of the module's main class.                                                       |
 +---------------+------------------------------------------------------------------------------------------------------+
-|descriptive    | This block can be repeated as many locale as you want. It includes a title, subtitle,                |
+|descriptive    | This block can be repeated for as many locale as you want. It includes a title, subtitle,            |
 |               | description and postscriptum. Only the title is mandatory.                                           |
 +---------------+------------------------------------------------------------------------------------------------------+
 |version        | Module version                                                                                       |
@@ -211,7 +211,7 @@ and the version of Thelia it is compatible with.
 +---------------+------------------------------------------------------------------------------------------------------+
 |thelia         | Which version of Thelia your module is compatible with.                                              |
 +---------------+------------------------------------------------------------------------------------------------------+
-|stability      | You module stability. Can be one of the value below :                                                |
+|stability      | Your module stability. Can be one of the value below :                                               |
 |               |                                                                                                      |
 |               | * alpha                                                                                              |
 |               | * beta                                                                                               |
@@ -268,7 +268,7 @@ Note : it's better to put the namespace property on each table attribute instead
 The main class in your module is the most important file. This class is used when the module is activated or
 deactivated.
 
-Most of the time this class will have the same name as you module directory. If my module directory is **Atos**, my
+Most of the time this class will have the same name as your module directory. If my module directory is **Atos**, my
 main class will be **Atos** too and the full namespace will be **Atos\\Atos**.
 
 Depending of the type of your module, this class must extend a specific abstract class. Here is a list of all
@@ -276,7 +276,7 @@ abstract classes :
 
 * **Thelia\\Module\\AbstractDeliveryModule** : Use this class when you develop a delivery module
 * **Thelia\\Module\\AbstractPaymentModule** : Use this class when you develop a payment module
-* **Thelia\\Module\\BaseModule** : Use this class when you develop a class module
+* **Thelia\\Module\\BaseModule** : Use this class when you develop a classic module
 
 **AbstractDeliveryModule** and **AbstractPaymentModule** classes extend the BaseModule class.
 
@@ -328,7 +328,7 @@ Specific methods for **AbstractPaymentModule**
 +---------------------------+------------------------------------------------------------------------------------------+
 |getPaymentSuccessPageUrl   | Return the order payment success page URL                                                |
 +---------------------------+------------------------------------------------------------------------------------------+
-|getPaymentFailurePageUrl   | Redirect the customer to the failure payment page. if $message is null,                  |
+|getPaymentFailurePageUrl   | Redirect the customer to the failure payment page. If $message is null,                  |
 |                           | a generic message is displayed.                                                          |
 +---------------------------+------------------------------------------------------------------------------------------+
 

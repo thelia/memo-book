@@ -6,6 +6,7 @@
 
 Contact : dev@thelia.net
 
-Authors : Manuel Raynaud, Julien Chanséaume, Benjamin Perche, Franck Allimant
+Authors : Manuel Raynaud, Julien Chanséaume, Benjamin Perche, Franck Allimant,
+Gilles Bourgeat
 
-Acknowledgements : Damien Souza, Stéphanie Pinet, Marion Laurent
+Acknowledgements : Damien Souza, Stéphanie Pinet, Marion Laurent, Roxane Fabre

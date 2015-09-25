@@ -25,7 +25,7 @@ Go to the thelia website (http://thelia.net) and download it.
 
 ```bash
 $ curl -sS https://getcomposer.org/installer | php
-$ php composer.phar create-project thelia/thelia your-path 2.2.0
+$ php composer.phar create-project thelia/thelia your-path 2.2.0 # replace 2.2.0 by the version of thelia you want
 ```
 
 ## Install Thelia

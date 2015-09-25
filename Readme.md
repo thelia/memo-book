@@ -13,6 +13,5 @@ converting the markdown if many formats.
 For example in HTML :
 
 ```bash
-pandoc -f markdown -t html src/* -o index.html --highlight-style=pygments -s -V css="styles.css" --toc
+pandoc -f markdown -t html5 src/* -o index.html --highlight-style=pygments -s -V css="styles.css" --toc
 ```
-

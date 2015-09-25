@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="author" content="Manuel Raynaud">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
@@ -55,6 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul></li>
 <li><a href="#cli-tools">CLI Tools</a><ul>
 <li><a href="#usage">Usage</a></li>
+<li><a href="#other-useful-commands">Other useful commands</a></li>
 </ul></li>
 <li><a href="#modules">Modules</a><ul>
 <li><a href="#structure">Structure</a><ul>
@@ -94,7 +94,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Thelia is an open source tool for creating e-business websites and managing online content. Created in 2005, the new version of Thelia aims to be the next generation E-commerce system. It is based on Symfony 2 components and meets the following objectives : performance and scalability.</p>
 <h1 id="installation"><a href="#installation">Installation</a></h1>
 <h2 id="requirements"><a href="#requirements">Requirements</a></h2>
-<p>Thelia needs at least php 5.4 and works with php 5.5 and 5.6 for now. For the database, Thelia requires at least mysql 5.5.</p>
+<p>Thelia needs at least php 5.4 and works with php 5.5 and 5.6 for now. For the database, Thelia requires at least MySQL 5.5.</p>
 <h2 id="php-extensions"><a href="#php-extensions">PHP extensions</a></h2>
 <ul>
 <li>intl</li>
@@ -109,9 +109,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Go to the thelia website (http://thelia.net) and download it.</p>
 <h3 id="using-composer"><a href="#using-composer">Using Composer</a></h3>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -sS https://getcomposer.org/installer <span class="kw">|</span> <span class="kw">php</span>
-$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.0.3</code></pre>
+$ <span class="kw">php</span> composer.phar create-project thelia/thelia your-path 2.2.0 <span class="co"># replace 2.2.0 by the version of thelia you want</span></code></pre>
 <h2 id="install-thelia"><a href="#install-thelia">Install Thelia</a></h2>
-<p>First of all, create a vhost dedicated to Thelia and put the documentRoot in the web directory.</p>
+<p>First of all, create a vhost dedicated to Thelia and put the documentRoot in the <code>web</code> directory.</p>
 <p>Here again you can install Thelia in two different ways</p>
 <h3 id="using-install-wizard"><a href="#using-install-wizard">Using install wizard</a></h3>
 <p>with your favorite browser, navigate to the install directory :</p>
@@ -132,27 +132,28 @@ $ <span class="kw">php</span> composer.phar create-project thelia/thelia your-pa
         setup
         local
             config
+            media
             modules
             session
         log
         templates
         web &lt;- the only directory accessible by your web server</code></pre>
 <h2 id="local-directory"><a href="#local-directory">Local directory</a></h2>
-<p>in this directory you can find four directories :</p>
+<p>In this directory you can find four directories :</p>
 <ul>
-<li>config : contains the database.yml file. In this file is stored the information for connecting to the database.</li>
-<li>modules : contains the modules developed by yourself or the community</li>
-<li>media : contains the media uploaded from the back-office. For example you can find all the product pictures.</li>
-<li>session : by default Thelia stores the sessions in this directory. You can change the directory where the sessions are saved. To do this insert a new record in the config table with <code>session_config.save_path</code> for the column name and in the value column put the full path where you want to store the sessions.</li>
+<li><strong>config</strong> : contains the database.yml file. In this file is stored the information for connecting to the database.</li>
+<li><strong>modules</strong> : contains the modules developed by yourself or the community</li>
+<li><strong>media</strong> : contains the media uploaded from the back-office. For example you can find all the product pictures.</li>
+<li><strong>session</strong> : by default Thelia stores the sessions in this directory. You can change the directory where the sessions are saved. To do this insert a new record in the config table with <code>session_config.save_path</code> for the column name and in the value column put the full path where you want to store the sessions.</li>
 </ul>
 <h2 id="template-directory"><a href="#template-directory">Template directory</a></h2>
 <p>The template directory contains all the templates for all Thelia's environment : front-office, back-office, email and pdf. For each type of templates a directory exists and contains as many template as you want but only one can be enabled (in the back-office panel -&gt; Configuration -&gt; System variables)</p>
 <p>A good practice is to duplicate the default template and then modify to have a custom template. The default front-office template is highly customizable, see some example at <a href="https://github.com/thelia-templates">https://github.com/thelia-templates</a></p>
 <h2 id="web-directory"><a href="#web-directory">Web directory</a></h2>
-<p>The web directory is the only one accessible by your web server. It contains by default two controllers :</p>
+<p>The web directory is <strong>the only one accessible by your web server</strong>. It contains by default two controllers :</p>
 <ul>
-<li>index.php : used in production environement, it calculate the cache only once and never tries to know if it is outdated or not so after each modification <strong>don't forget to clear the cache</strong></li>
-<li>index_dev.php : used when you develop the store. This controller is more flexible, the cache is checked all the time and refreshed if needed. It also logs a lot of information, like every request you make, all assets creation, etc.</li>
+<li><strong>index.php</strong> : used in production environement, it calculates the cache only once and never tries to know if it is outdated or not so after each modification <strong>don't forget to clear the cache</strong></li>
+<li><strong>index_dev.php</strong> : used when you develop the store. This controller is more flexible, the cache is checked all the time and refreshed if needed. It also logs a lot of information, like every request you make, all assets creation, etc.</li>
 </ul>
 <h2 id="other-directories"><a href="#other-directories">Other directories</a></h2>
 <p>The other directories are less important :</p>
@@ -200,38 +201,58 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <td style="text-align: left;"><code>$ php Thelia  image-cache:clear [subdir]</code></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">generate:sql</td>
+<td style="text-align: left;">Generate SQL files</td>
+<td style="text-align: left;"><code>$ php Thelia generate:sql [--locales=&quot;...&quot;]</code></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">module:activate</td>
 <td style="text-align: left;">Activate a module</td>
 <td style="text-align: left;"><code>$ php Thelia module:activate module-name</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">module:deactivate</td>
 <td style="text-align: left;">Deactivate a module</td>
 <td style="text-align: left;"><code>$ php Thelia module:deactivate module-name</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">module:generate</td>
 <td style="text-align: left;">Generate all needed files for creating a new Module</td>
 <td style="text-align: left;"><code>$ php Thelia module:generate module-name</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">module:generate:model</td>
 <td style="text-align: left;">Generate model for a specific module</td>
 <td style="text-align: left;"><code>$ php Thelia module:generate:model module-name [--generate-sql]</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">module:generate:sql</td>
 <td style="text-align: left;">Generate the sql from schema.xml file for a specific module</td>
 <td style="text-align: left;"><code>$ php Thelia module:generate:sql module-name</code></td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">module:list</td>
+<td style="text-align: left;">get module list</td>
+<td style="text-align: left;"><code>$ php Thelia module:list</code></td>
+</tr>
 <tr class="even">
 <td style="text-align: left;">module:refresh</td>
-<td style="text-align: left;">Refresh module list</td>
+<td style="text-align: left;">refresh module list</td>
 <td style="text-align: left;"><code>$ php Thelia module:refresh</code></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">sale:check-activation</td>
+<td style="text-align: left;">check the activation and deactivation dates of sales, and perform the required action depending on the current date.</td>
+<td style="text-align: left;"><code>$ php Thelia sale:check-activation</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">thelia:config</td>
+<td style="text-align: left;">Manage (list, get, set, delete) configuration variables</td>
+<td style="text-align: left;"><code>$ php Thelia thelia:config [--secured] [--visible] COMMAND [name] [value]</code></td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">thelia:dev:reloadDB</td>
-<td style="text-align: left;">Erase current database and create new one. <strong>All your data will be lost</strong></td>
+<td style="text-align: left;">erase current database and create new one. <strong>all your data will be lost</strong></td>
 <td style="text-align: left;"><code>$ php Thelia thelia:dev:reloadDB</code></td>
 </tr>
 <tr class="even">
@@ -244,16 +265,45 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <td style="text-align: left;">Install Thelia</td>
 <td style="text-align: left;"><code>$ php Thelia thelia:install</code></td>
 </tr>
+</tbody>
+</table>
+<p>tip: you can get help on a command using <code>php Thelia help COMMAND</code></p>
+<h2 id="other-useful-commands"><a href="#other-useful-commands">Other useful commands</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>command</strong></th>
+<th style="text-align: left;"><strong>description</strong></th>
+<th style="text-align: left;"><strong>example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">./reset_install.sh</td>
+<td style="text-align: left;">Reset the database, install fake data, create an administrator thelia2/thelia2</td>
+<td style="text-align: left;"></td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">thelia:update</td>
-<td style="text-align: left;">Update Thelia database. Before doing that you have to update Thelia files</td>
-<td style="text-align: left;"><code>$ php Thelia thelia:update</code></td>
+<td style="text-align: left;">php setup/faker.php</td>
+<td style="text-align: left;">Install fake data (products, contents, orders, ...)</td>
+<td style="text-align: left;"><code>$ php setup/faker.php [-c &lt;number of categories&gt;] [-p &lt;number of products&gt;] [-l &lt;locale list&gt;] [-r &lt;real text&gt;]</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">php setup/demo.php</td>
+<td style="text-align: left;">Install the data used by the demo site of Thelia</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">php setup/update.php</td>
+<td style="text-align: left;">Update your website for a new version of Thelia</td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
 <h1 id="modules"><a href="#modules">Modules</a></h1>
 <p>Modules are the best way to extend Thelia functionalities. Payment and delivery methods are all modules.</p>
 <p>The structure of a module is exactly the same as Thelia's core. A module can interact with the container in order to add its own services, to create new compilers, etc.</p>
+<p>Thelia have a cli command to generate all needed files for creating a new Module : <code>php Thelia generate:module MyModule</code></p>
 <h2 id="structure"><a href="#structure">Structure</a></h2>
 <pre><code>\MyModule
     \Config
@@ -869,7 +919,7 @@ $ <span class="kw">php</span> Thelia</code></pre>
 <li>Website : <a href="http://thelia.net">http://thelia.net</a></li>
 </ul>
 <p>Contact : dev@thelia.net</p>
-<p>Authors : Manuel Raynaud, Julien Chanséaume, Benjamin Perche, Franck Allimant</p>
-<p>Acknowledgements : Damien Souza, Stéphanie Pinet, Marion Laurent</p>
+<p>Authors : Manuel Raynaud, Julien Chanséaume, Benjamin Perche, Franck Allimant, Gilles Bourgeat</p>
+<p>Acknowledgements : Damien Souza, Stéphanie Pinet, Marion Laurent, Roxane Fabre</p>
 </body>
 </html>

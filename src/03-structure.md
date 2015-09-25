@@ -11,6 +11,7 @@ www <- your web root directory
         setup
         local
             config
+            media
             modules
             session
         log
@@ -20,14 +21,14 @@ www <- your web root directory
 
 ## Local directory
 
-in this directory you can find four directories :
+In this directory you can find four directories :
 
-* config : contains the database.yml file. In this file is stored the
+- **config** : contains the database.yml file. In this file is stored the
 information for connecting to the database.
-* modules : contains the modules developed by yourself or the community
-* media : contains the media uploaded from the back-office. For example you can
+- **modules** : contains the modules developed by yourself or the community
+- **media** : contains the media uploaded from the back-office. For example you can
  find all the product pictures.
-* session : by default Thelia stores the sessions in this directory. You can
+- **session** : by default Thelia stores the sessions in this directory. You can
 change the directory where the sessions are saved. To do this insert
 a new record in the config table with ```session_config.save_path``` for the
 column name and in the value column put the full path where you want to store
@@ -46,13 +47,13 @@ customizable, see some example at [https://github.com/thelia-templates](https://
 
 ## Web directory
 
-The web directory is the only one accessible by your web server. It contains
-by default two controllers :
+The web directory is **the only one accessible by your web server**.
+It contains by default two controllers :
 
-* index.php : used in production environement, it calculate the cache only once
-and never tries to know if it is outdated or not so after each modification
-**don't forget to clear the cache**
-* index_dev.php : used when you develop the store. This controller is more
+- **index.php** : used in production environement, it calculates the cache only
+once and never tries to know if it is outdated or not so after each
+modification **don't forget to clear the cache**
+- **index_dev.php** : used when you develop the store. This controller is more
 flexible, the cache is checked all the time and refreshed if needed. It also
 logs a lot of information, like every request you make, all assets creation,
 etc.

@@ -5,6 +5,9 @@ Modules are the best way to extend Thelia functionalities. Payment and delivery 
 The structure of a module is exactly the same as Thelia's core. A module can interact with the container in order
 to add its own services, to create new compilers, etc.
 
+Thelia have a cli command to generate all needed files for creating a new Module : ```php Thelia generate:module MyModule```
+
+
 ## Structure
 
 ```
@@ -331,4 +334,3 @@ Specific methods for **AbstractPaymentModule**
 |getPaymentFailurePageUrl   | Redirect the customer to the failure payment page. If $message is null,                  |
 |                           | a generic message is displayed.                                                          |
 +---------------------------+------------------------------------------------------------------------------------------+
-
